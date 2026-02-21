@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Features | Majorana Neutrino Hunt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+
+      <nav class="sidebar-nav">
+        <a href="index.html">Overview</a>
+        <a href="data.html">Data</a>
+        <a href="features.html" class="active">Features</a>
+        <a href="methods.html">Methods</a>
+        <a href="results.html">Results</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <div class="section">
+        <h1>Feature Engineering</h1>
+
+        <div class="grid">
+
+          <div class="card">
+            <h3 style="margin-bottom: 6px;">Time-Domain Features</h3>
+            <p class="small">
+              We extract features directly from waveform shape to capture pulse timing and structure.
+            </p>
+
+            <ul class="small">
+              <li>LQ80 and ND80</li>
+              <li>Half-Width Peak (HWP)</li>
+              <li>Peak-to-Peak Ratio (PPR)</li>
+              <li>Energy Duration (ED)</li>
+              <li>Drift time metrics (tdrift10, tdrift50)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 style="margin-bottom: 6px;">Frequency-Domain Features</h3>
+            <p class="small">
+              Frequency-based features help distinguish signal-like and background-like pulse shapes.
+            </p>
+
+            <ul class="small">
+              <li>Spectral Centroid Power</li>
+              <li>Total Power</li>
+              <li>Current Skewness and Kurtosis</li>
+              <li>Tail slope characteristics</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+          <p class="small">
+            All features are engineered with detector physics in mind, capturing charge drift behavior and pulse shape differences between single-site and multi-site events. These engineered features form the input space for both classification and regression models.
+          </p>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

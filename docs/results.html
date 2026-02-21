@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results | Majorana Neutrino Hunt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+
+      <nav class="sidebar-nav">
+        <a href="index.html">Overview</a>
+        <a href="data.html">Data</a>
+        <a href="features.html">Features</a>
+        <a href="methods.html">Methods</a>
+        <a href="results.html" class="active">Results</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <div class="section">
+        <h1>Results</h1>
+
+        <!-- ============================= -->
+        <!-- CLASSIFICATION SECTION -->
+        <!-- ============================= -->
+
+        <div class="card" style="margin-bottom: 20px;">
+          <h2 style="margin-bottom: 10px;">Classification Results</h2>
+
+          <p class="small">
+            We evaluated multiple classification models for predicting single-site versus multi-site events. 
+            Due to class imbalance, F1 score was used as the primary evaluation metric.
+          </p>
+
+          <ul class="small">
+            <li>Final Model: Random Forest (psd_label_lq)</li>
+            <li>Primary Metric: F1 Score</li>
+            <li>Precision and Recall analyzed for false positive / false negative balance</li>
+          </ul>
+
+          <p class="small">
+            Random Forest performed similarly to XGBoost but was selected due to stability 
+            and comparable performance with simpler tuning.
+          </p>
+
+          <!-- OPTIONAL: place for confusion matrix image -->
+          <!--
+          <div style="margin-top: 15px;">
+            <img src="images/confusion_matrix.png" alt="Confusion Matrix" style="max-width: 100%;">
+          </div>
+          -->
+        </div>
+
+        <!-- ============================= -->
+        <!-- REGRESSION SECTION -->
+        <!-- ============================= -->
+
+        <div class="card">
+          <h2 style="margin-bottom: 10px;">Regression Results</h2>
+
+          <p class="small">
+            Regression models were trained to predict continuous energy values 
+            from engineered waveform features.
+          </p>
+
+          <ul class="small">
+            <li>Baseline: Linear / Ridge Regression</li>
+            <li>Improved Model: Random Forest Regressor</li>
+            <li>Evaluation Metrics: MSE and RMSE</li>
+            <li>5-fold Cross Validation</li>
+          </ul>
+
+          <p class="small">
+            The Random Forest Regressor reduced validation error compared to 
+            the baseline linear model, though some overfitting was observed 
+            based on the training-validation gap.
+          </p>
+
+          <!-- OPTIONAL: place for MSE comparison table image -->
+          <!--
+          <div style="margin-top: 15px;">
+            <img src="images/mse_table.png" alt="Regression MSE Table" style="max-width: 100%;">
+          </div>
+          -->
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

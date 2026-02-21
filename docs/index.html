@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Majorana Neutrino Hunt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+
+      <nav class="sidebar-nav">
+        <a href="index.html" class="active">Overview</a>
+        <a href="data.html">Data</a>
+        <a href="features.html">Features</a>
+        <a href="methods.html">Methods</a>
+        <a href="results.html">Results</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <div class="hero">
+        <h1>Finding Ghost Particles</h1>
+        <p>
+          Applying machine learning to waveform data from the Majorana Demonstrator to improve event identification and energy estimation.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" 
+
+            href="https://github.com/YooNice100/Majorana-Neutrino-Hunt"
+            target="_blank"
+            rel="noopener noreferrer">
+            GitHub Repo
+          </a>      
+        </div>
+
+        <div class="note">
+          This site summarizes our DSC 180 capstone project. Regression is in progress and will be added as results are finalized.
+        </div>
+      </div>
+
+      <div id="overview" class="section">
+        <h2>Introduction</h2>
+        <div class="card">
+          <p class="small">
+             The goal of our research is to support the search for neutrinoless double beta decay by applying machine learning to detector waveform data from the Majorana Demonstrator experiment. This rare process is expected to occur in single-site events (SSE), while background interactions often produce multi-site events (MSE). 
+
+           
+          </p>
+
+          <p class = "small"> 
+             To improve event identification, we engineered physics-informed waveform features that capture pulse shape, timing, and frequency characteristics. These features were used to train classification models that distinguish signal-like SSE from background-like MSE, and regression models to estimate continuous energy values.
+          </p>
+        </div>
+      </div>
+
+
+    </main>
+  </div>
+</body>
+</html>

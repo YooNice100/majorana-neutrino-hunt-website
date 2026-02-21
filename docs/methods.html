@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Methods | Majorana Neutrino Hunt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+
+      <nav class="sidebar-nav">
+        <a href="index.html">Overview</a>
+        <a href="data.html">Data</a>
+        <a href="features.html">Features</a>
+        <a href="methods.html" class="active">Methods</a>
+        <a href="results.html">Results</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <div class="section">
+        <h1>Methods</h1>
+
+        <div class="grid">
+
+          <!-- Classification -->
+          <div class="card">
+            <h3 style="margin-bottom: 6px;">Classification</h3>
+            <p class="small">
+              We trained multiple models to classify waveform events as signal-like single-site events (SSE) or background-like multi-site events (MSE).
+            </p>
+
+            <ul class="small">
+              <li>Baseline: Logistic Regression</li>
+              <li>Tree-based: Random Forest</li>
+              <li>Model comparison using F1 score</li>
+              <li>Threshold tuning to balance precision and recall</li>
+              <li>Confusion matrix analysis</li>
+            </ul>
+
+            <p class="small">
+              Due to class imbalance, F1 score was used as the primary evaluation metric rather than accuracy.
+            </p>
+          </div>
+
+          <!-- Regression -->
+          <div class="card">
+            <h3 style="margin-bottom: 6px;">Regression</h3>
+            <p class="small">
+              We developed regression models to predict continuous energy values from engineered waveform features.
+            </p>
+
+            <ul class="small">
+              <li>Baseline: Linear and Ridge Regression</li>
+              <li>Improved: Random Forest Regressor</li>
+              <li>Evaluation using MSE and RMSE</li>
+              <li>5-fold cross-validation</li>
+            </ul>
+
+            <p class="small">
+              Model performance was evaluated by comparing training and validation error to monitor overfitting.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+          <p class="small">
+            All preprocessing steps, including feature scaling and missing value imputation, were implemented within scikit-learn pipelines to ensure consistent and reproducible model training.
+          </p>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

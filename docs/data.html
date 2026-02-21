@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data | Majorana Neutrino Hunt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+
+      <nav class="sidebar-nav">
+        <a href="index.html">Overview</a>
+        <a href="data.html" class="active">Data</a>
+        <a href="features.html">Features</a>
+        <a href="methods.html">Methods</a>
+        <a href="results.html">Results</a>
+        <a href="team.html">Team</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+
+      <div class="section">
+        <h1>Data</h1>
+
+        <div class="grid">
+
+          <div class="card">
+            <p class="small">
+              Our dataset consists of detector waveforms collected by the Majorana Demonstrator experiment. Each waveform represents charge collection behavior in high-purity germanium detectors.
+            </p>
+
+            <ul class="small">
+              <li>Waveforms stored in HDF5 files</li>
+              <li>Fixed-length time-series samples</li>
+              <li>Event-level labels for PSD classification</li>
+              <li>Energy labels for regression analysis</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <p class="small">
+              Key challenges in the dataset:
+            </p>
+
+            <ul class="small">
+              <li>Class imbalance across PSD labels</li>
+              <li>Noise and baseline drift between detectors</li>
+              <li>Feature stability across files</li>
+              <li>Large file sizes requiring preprocessing</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
