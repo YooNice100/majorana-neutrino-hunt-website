@@ -4,55 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data | Majorana Neutrino Hunt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-  <div class="layout">
+<body class="subpage">
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+  <!-- STICKY TOP NAV -->
+  <header class="topnav visible">
+    <span class="topnav-brand">Majorana Neutrino Hunt</span>
+    <nav class="topnav-links">
+      <a href="index.html">Overview</a>
+      <a href="data.html" class="active">Data</a>
+      <a href="features.html">Features</a>
+      <a href="methods.html">Methods</a>
+      <a href="results.html">Results</a>
+      <a href="team.html">Team</a>
+    </nav>
+  </header>
 
-      <nav class="sidebar-nav">
-        <a href="index.html">Overview</a>
-        <a href="data.html" class="active">Data</a>
-        <a href="features.html">Features</a>
-        <a href="methods.html">Methods</a>
-        <a href="results.html">Results</a>
-        <a href="team.html">Team</a>
-      </nav>
-    </aside>
+  <div class="subpage-layout">
 
-    <!-- MAIN CONTENT -->
-<main class="content">
-
-  <!-- ===================== -->
-  <!-- DATA SOURCE SECTION -->
-  <!-- ===================== -->
-
-  <div class="section">
-    <h1>Data</h1>
-
-    <div class="card">
-      <p class="small">
-        Our dataset consists of detector waveforms collected by the Majorana Demonstrator experiment. 
-        Each waveform represents charge collection behavior in high-purity germanium detectors.
-      </p>
-
-      <ul class="small">
-        <li>Waveforms stored in HDF5 files</li>
-        <li>Fixed-length time-series samples</li>
-        <li>Event-level PSD labels</li>
-        <li>Energy labels for regression analysis</li>
-      </ul>
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <div class="page-header-inner">
+        <p class="page-eyebrow">Dataset</p>
+        <h1 class="page-title">Data</h1>
+        <p class="page-desc">
+          Detector waveforms collected by the Majorana Demonstrator experiment,
+          representing charge collection behavior in high-purity germanium detectors.
+        </p>
+      </div>
     </div>
+
+    <main class="subpage-content">
+
+      <!-- CATEGORY NAV -->
+      <div class="category-nav">
+        <a href="#source" class="cat-link active">Source</a>
+        <a href="#structure" class="cat-link">Structure</a>
+        <a href="#labels" class="cat-link">Labels</a>
+      </div>
+
+      <!-- SOURCE -->
+      <section id="source" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge time">Source</div>
+          <h2>Data Source</h2>
+          <p>Raw waveform data from the Majorana Demonstrator germanium detector array.</p>
+        </div>
+        <div class="data-prose-card">
+          <p>
+            Our dataset consists of detector waveforms collected by the Majorana Demonstrator experiment.
+            Each waveform represents charge collection behavior in high-purity germanium (HPGe) detectors,
+            which are among the most sensitive instruments for searching for neutrinoless double beta decay.
+          </p>
+          <p>
+            The Majorana Demonstrator was operated at the Sanford Underground Research Facility (SURF)
+            in Lead, South Dakota, shielded from cosmic rays to reduce background noise.
+          </p>
+        </div>
+      </section>
+
+      <!-- STRUCTURE -->
+      <section id="structure" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge tail">Structure</div>
+          <h2>Data Structure</h2>
+          <p>Format and organization of the raw waveform files.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feat-tag tail">HDF5 Files</span>
+            <p>Waveforms stored in HDF5 format for efficient hierarchical data access and compression.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag tail">Time Series</span>
+            <p>Fixed-length time-series samples capturing the full charge pulse from each detector event.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag tail">Event Level</span>
+            <p>Each entry corresponds to a single physics event, with waveform and metadata stored together.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LABELS -->
+      <section id="labels" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge grad">Labels</div>
+          <h2>Event Labels</h2>
+          <p>Ground-truth annotations used for supervised learning tasks.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feat-tag grad">PSD Labels</span>
+            <p>Event-level pulse shape discrimination labels classifying events as single-site (SSE) or multi-site (MSE).</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag grad">Energy Labels</span>
+            <p>Continuous energy values in keV used as targets for regression model training and evaluation.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
 
-  
- 
-
-</main>
-  </div>
 </body>
 </html>

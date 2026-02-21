@@ -4,84 +4,180 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Methods | Majorana Neutrino Hunt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-  <div class="layout">
+<body class="subpage">
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+  <header class="topnav visible">
+    <span class="topnav-brand">Majorana Neutrino Hunt</span>
+    <nav class="topnav-links">
+      <a href="index.html">Overview</a>
+      <a href="data.html">Data</a>
+      <a href="features.html">Features</a>
+      <a href="methods.html" class="active">Methods</a>
+      <a href="results.html">Results</a>
+      <a href="team.html">Team</a>
+    </nav>
+  </header>
 
-      <nav class="sidebar-nav">
-        <a href="index.html">Overview</a>
-        <a href="data.html">Data</a>
-        <a href="features.html">Features</a>
-        <a href="methods.html" class="active">Methods</a>
-        <a href="results.html">Results</a>
-        <a href="team.html">Team</a>
-      </nav>
-    </aside>
+  <div class="subpage-layout">
 
-    <!-- MAIN CONTENT -->
-    <main class="content">
-
-      <div class="section">
-        <h1>Methods</h1>
-
-        <div class="grid">
-
-          <!-- Classification -->
-          <div class="card">
-            <h3 style="margin-bottom: 6px;">Classification</h3>
-            <p class="small">
-              We trained multiple models to classify waveform events as signal-like single-site events (SSE) or background-like multi-site events (MSE).
-            </p>
-
-            <ul class="small">
-              <li>Baseline: Logistic Regression</li>
-              <li>Tree-based: Random Forest</li>
-              <li>Model comparison using F1 score</li>
-              <li>Threshold tuning to balance precision and recall</li>
-              <li>Confusion matrix analysis</li>
-            </ul>
-
-            <p class="small">
-              Due to class imbalance, F1 score was used as the primary evaluation metric rather than accuracy.
-            </p>
-          </div>
-
-          <!-- Regression -->
-          <div class="card">
-            <h3 style="margin-bottom: 6px;">Regression</h3>
-            <p class="small">
-              We developed regression models to predict continuous energy values from engineered waveform features.
-            </p>
-
-            <ul class="small">
-              <li>Baseline: Linear and Ridge Regression</li>
-              <li>Improved: Random Forest Regressor</li>
-              <li>Evaluation using MSE and RMSE</li>
-              <li>5-fold cross-validation</li>
-            </ul>
-
-            <p class="small">
-              Model performance was evaluated by comparing training and validation error to monitor overfitting.
-            </p>
-          </div>
-
-        </div>
-
-        <div class="card" style="margin-top: 20px;">
-          <p class="small">
-            All preprocessing steps, including feature scaling and missing value imputation, were implemented within scikit-learn pipelines to ensure consistent and reproducible model training.
-          </p>
-        </div>
-
+    <div class="page-header">
+      <div class="page-header-inner">
+        <p class="page-eyebrow">Methodology</p>
+        <h1 class="page-title">Methods</h1>
+        <p class="page-desc">
+          Machine learning pipelines for pulse shape discrimination classification
+          and continuous energy regression from germanium detector waveforms.
+        </p>
       </div>
+    </div>
+
+    <main class="subpage-content">
+
+      <div class="category-nav">
+        <a href="#pipeline" class="cat-link active">Pipeline</a>
+        <a href="#classification" class="cat-link">Classification</a>
+        <a href="#regression" class="cat-link">Regression</a>
+        <a href="#evaluation" class="cat-link">Evaluation</a>
+      </div>
+
+      <!-- PIPELINE -->
+      <section id="pipeline" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge time">Pipeline</div>
+          <h2>Overall Pipeline</h2>
+          <p>End-to-end flow from raw waveforms to model predictions.</p>
+        </div>
+        <div class="pipeline-steps">
+          <div class="pipeline-step">
+            <div class="step-num">01</div>
+            <div class="step-body">
+              <h3>Waveform Ingestion</h3>
+              <p>Load raw waveforms from HDF5 files. Apply baseline correction and pole-zero cancellation to normalize detector response.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">
+            <div class="step-num">02</div>
+            <div class="step-body">
+              <h3>Feature Extraction</h3>
+              <p>Compute 26 physics-informed features spanning time-domain, tail, gradient, and frequency-domain characteristics.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">
+            <div class="step-num">03</div>
+            <div class="step-body">
+              <h3>Model Training</h3>
+              <p>Train classification models (SSE vs MSE) and regression models (energy estimation) on extracted feature vectors.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">
+            <div class="step-num">04</div>
+            <div class="step-body">
+              <h3>Evaluation</h3>
+              <p>Assess model performance using held-out test sets with task-appropriate metrics.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CLASSIFICATION -->
+      <section id="classification" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge tail">Classification</div>
+          <h2>Classification Models</h2>
+          <p>Distinguishing signal-like single-site events (SSE) from background multi-site events (MSE).</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feat-tag tail">Random Forest</span>
+            <p>Ensemble of decision trees trained on engineered features. Robust to outliers and provides feature importance rankings.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag tail">Gradient Boosting</span>
+            <p>Sequential boosting approach that iteratively corrects misclassified events for high precision on imbalanced data.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag tail">Neural Network</span>
+            <p>Fully connected network trained end-to-end on feature vectors, capturing non-linear decision boundaries.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGRESSION -->
+      <section id="regression" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge grad">Regression</div>
+          <h2>Regression Models</h2>
+          <p>Estimating continuous energy values from waveform features. Currently in progress.</p>
+        </div>
+        <div class="note-banner" style="margin-bottom: 24px;">
+          <span class="note-icon">⚗️</span>
+          Regression results are in progress and will be updated as experiments are finalized.
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feat-tag grad">Ridge Regression</span>
+            <p>Regularized linear model providing a baseline for energy estimation from feature vectors.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag grad">XGBoost Regressor</span>
+            <p>Gradient boosted trees adapted for continuous target prediction with strong generalization.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVALUATION -->
+      <section id="evaluation" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge freq">Evaluation</div>
+          <h2>Evaluation Strategy</h2>
+          <p>Metrics and validation methodology used to assess model performance.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feat-tag freq">AUC-ROC</span>
+            <p>Area under the ROC curve used as the primary classification metric, robust to class imbalance.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag freq">Precision & Recall</span>
+            <p>Evaluated at signal-retaining thresholds to quantify the trade-off between background rejection and signal efficiency.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag freq">RMSE</span>
+            <p>Root mean squared error used to measure energy regression accuracy against ground-truth labels.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag freq">Cross-Validation</span>
+            <p>Stratified k-fold splits ensure both classes are represented across all training and validation folds.</p>
+          </div>
+        </div>
+      </section>
 
     </main>
   </div>
+
+  <script>
+    const sections = document.querySelectorAll('.feature-section');
+    const catLinks = document.querySelectorAll('.cat-link');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          catLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.cat-link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => obs.observe(s));
+  </script>
+
 </body>
 </html>

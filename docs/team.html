@@ -4,59 +4,133 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Team | Majorana Neutrino Hunt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
-  <div class="layout">
+<body class="subpage">
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-      <h2 class="sidebar-title">Majorana<br>Neutrino Hunt</h2>
+  <header class="topnav visible">
+    <span class="topnav-brand">Majorana Neutrino Hunt</span>
+    <nav class="topnav-links">
+      <a href="index.html">Overview</a>
+      <a href="data.html">Data</a>
+      <a href="features.html">Features</a>
+      <a href="methods.html">Methods</a>
+      <a href="results.html">Results</a>
+      <a href="team.html" class="active">Team</a>
+    </nav>
+  </header>
 
-      <nav class="sidebar-nav">
-        <a href="index.html">Overview</a>
-        <a href="data.html">Data</a>
-        <a href="features.html">Features</a>
-        <a href="methods.html">Methods</a>
-        <a href="results.html">Results</a>
-        <a href="team.html" class="active">Team</a>
-      </nav>
-    </aside>
+  <div class="subpage-layout">
 
-    <!-- MAIN CONTENT -->
-    <main class="content">
+    <div class="page-header">
+      <div class="page-header-inner">
+        <p class="page-eyebrow">People</p>
+        <h1 class="page-title">Team</h1>
+        <p class="page-desc">
+          DSC 180 capstone project team at UC San Diego, applying machine learning
+          to particle physics detector data.
+        </p>
+      </div>
+    </div>
 
-      <div class="section">
-        <h1>Team</h1>
+    <main class="subpage-content">
 
-        <div class="grid">
+      <!-- STUDENTS -->
+      <section class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge time">Students</div>
+          <h2>Team Members</h2>
+        </div>
+        <div class="team-grid">
 
-          <div class="card">
-            <h3>Eunice Cho</h3>
-            <p class="small">Classification task: psd_label_lq</p>
+          <div class="team-card">
+            <div class="owner-avatar" style="background: linear-gradient(135deg,#059669,#34d399)">E</div>
+            <div class="team-info">
+              <h3>Eunice Cho</h3>
+              <p class="team-role">Classification · <span class="mono">psd_label_lq</span></p>
+            </div>
           </div>
 
-          <div class="card">
-            <h3>Nomin Batrigal</h3>
-            <p class="small">Classification task: psd_label_high_avse</p>
+          <div class="team-card">
+            <div class="owner-avatar" style="background: linear-gradient(135deg,#7c3aed,#a855f7)">N</div>
+            <div class="team-info">
+              <h3>Nomin Batrigal</h3>
+              <p class="team-role">Classification · <span class="mono">psd_label_high_avse</span></p>
+            </div>
           </div>
 
-          <div class="card">
-            <h3>Prithvi Kochhar</h3>
-            <p class="small">Classification task: psd_label_low_avse</p>
+          <div class="team-card">
+            <div class="owner-avatar" style="background: linear-gradient(135deg,#3b82f6,#06b6d4)">P</div>
+            <div class="team-info">
+              <h3>Prithvi Kochhar</h3>
+              <p class="team-role">Classification · <span class="mono">psd_label_low_avse</span></p>
+            </div>
           </div>
 
-          <div class="card">
-            <h3>Jade Choi</h3>
-            <p class="small">Classification task: psd_label_dcr</p>
+          <div class="team-card">
+            <div class="owner-avatar" style="background: linear-gradient(135deg,#0891b2,#67e8f9)">J</div>
+            <div class="team-info">
+              <h3>Jade Choi</h3>
+              <p class="team-role">Classification · <span class="mono">psd_label_dcr</span></p>
+            </div>
           </div>
 
         </div>
+      </section>
 
-      </div>
+      <!-- MENTORS -->
+      <section class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge freq">Mentors</div>
+          <h2>Mentors</h2>
+        </div>
+        <div class="team-grid">
+
+          <div class="team-card">
+            <div class="owner-avatar" style="background: linear-gradient(135deg,#b45309,#f59e0b)">AL</div>
+            <div class="team-info">
+              <h3>Aobo Li</h3>
+              <p class="team-role">Faculty Mentor</p>
+              <p class="team-note">Research advisor and domain expert on the Majorana Demonstrator experiment.</p>
+            </div>
+          </div>
+
+          <div class="team-card">
+            <div class="owner-avatar" style="background: linear-gradient(135deg,#be185d,#f472b6)">LG</div>
+            <div class="team-info">
+              <h3>Luca Georgescu</h3>
+              <p class="team-role">Student Mentor · Project Lead</p>
+              <p class="team-note">Leads weekly meetings and bridges communication between the team and Aobo.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ACKNOWLEDGEMENTS -->
+      <section class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge grad">Acknowledgements</div>
+          <h2>Acknowledgements</h2>
+        </div>
+        <div class="data-prose-card">
+          <p>
+            We thank the Majorana Collaboration for providing access to the detector waveform data used in this research.
+            This project was completed as part of the DSC 180 capstone sequence at UC San Diego.
+          </p>
+          <p>
+            Additional thanks to the Sanford Underground Research Facility (SURF) for supporting
+            the Majorana Demonstrator experiment.
+          </p>
+        </div>
+      </section>
 
     </main>
   </div>
+
 </body>
 </html>
