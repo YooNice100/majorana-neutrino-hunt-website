@@ -25,44 +25,232 @@
     </aside>
 
     <!-- MAIN CONTENT -->
-    <main class="content">
+<main class="content">
 
-      <div class="section">
-        <h1>Data</h1>
+  <!-- ===================== -->
+  <!-- DATA SOURCE SECTION -->
+  <!-- ===================== -->
 
-        <div class="grid">
+  <div class="section">
+    <h1>Data</h1>
 
-          <div class="card">
-            <p class="small">
-              Our dataset consists of detector waveforms collected by the Majorana Demonstrator experiment. Each waveform represents charge collection behavior in high-purity germanium detectors.
-            </p>
+    <div class="card">
+      <p class="small">
+        Our dataset consists of detector waveforms collected by the Majorana Demonstrator experiment. 
+        Each waveform represents charge collection behavior in high-purity germanium detectors.
+      </p>
 
-            <ul class="small">
-              <li>Waveforms stored in HDF5 files</li>
-              <li>Fixed-length time-series samples</li>
-              <li>Event-level labels for PSD classification</li>
-              <li>Energy labels for regression analysis</li>
-            </ul>
-          </div>
+      <ul class="small">
+        <li>Waveforms stored in HDF5 files</li>
+        <li>Fixed-length time-series samples</li>
+        <li>Event-level PSD labels</li>
+        <li>Energy labels for regression analysis</li>
+      </ul>
+    </div>
+  </div>
 
-          <div class="card">
-            <p class="small">
-              Key challenges in the dataset:
-            </p>
+  <!-- ===================== -->
+  <!-- FEATURE SECTION -->
+  <!-- ===================== -->
 
-            <ul class="small">
-              <li>Class imbalance across PSD labels</li>
-              <li>Noise and baseline drift between detectors</li>
-              <li>Feature stability across files</li>
-              <li>Large file sizes requiring preprocessing</li>
-            </ul>
-          </div>
+  <div class="section">
+    <h2>Engineered Features</h2>
 
-        </div>
+    <div class="grid">
 
-      </div>
+    <div class="card">
+      <h3>tp0</h3>
+      <p class="small">
+        Initial timing reference of the waveform used to anchor pulse measurements.
+      </p>
+    </div>
 
-    </main>
+    <div class="card">
+      <h3>ED</h3>
+      <p class="small">
+        Energy duration measuring how long the pulse remains above threshold.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Half-Width Peak (HWP)</h3>
+      <p class="small">
+        Measures the temporal width of the waveform peak, indicating how localized the energy deposition is.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>LQ80</h3>
+      <p class="small">
+        Captures waveform charge behavior at 80% amplitude. Useful for distinguishing single-site from multi-site events.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>PPR</h3>
+      <p class="small">
+        Peak-to-Peak Ratio capturing amplitude structure within the waveform.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>SCA</h3>
+      <p class="small">
+        Shape comparison attribute summarizing waveform morphology.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>ND80</h3>
+      <p class="small">
+        Drift-related timing feature that reflects charge transport behavior within the detector.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>current_skewness</h3>
+      <p class="small">
+        Skewness of the current signal distribution, capturing asymmetry in pulse shape.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>tail_slope_no_pz</h3>
+      <p class="small">
+        Tail slope measurement without pole-zero correction applied.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>spectral_centroid_power</h3>
+      <p class="small">
+        Frequency-domain feature summarizing how signal energy is distributed across frequencies.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>current_kurtosis</h3>
+      <p class="small">
+        Kurtosis of the current waveform distribution, measuring peakedness.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>tail_slope</h3>
+      <p class="small">
+        Slope of the waveform tail region following the main pulse.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>total_power</h3>
+      <p class="small">
+        Total integrated signal power derived from frequency analysis.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>time_to_main_peak</h3>
+      <p class="small">
+        Time taken for the waveform to reach its primary peak.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>time_to_peak</h3>
+      <p class="small">
+        Overall time required for the waveform to reach maximum amplitude.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>current_width</h3>
+      <p class="small">
+        Temporal width of the current pulse.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>tdrift10</h3>
+      <p class="small">
+        Drift time measured at 10% of the waveform amplitude.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>tdrift50</h3>
+      <p class="small">
+        Drift time measured at 50% of the waveform amplitude.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>tdrift99</h3>
+      <p class="small">
+        Drift time measured at 99% of the waveform amplitude.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>tfr</h3>
+      <p class="small">
+        Time-to-front ratio capturing pulse rise characteristics.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>peak_count</h3>
+      <p class="small">
+        Number of significant peaks detected in the waveform.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>gbn</h3>
+      <p class="small">
+        Gradient-based noise metric reflecting signal fluctuations.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>bpr</h3>
+      <p class="small">
+        Baseline power ratio feature derived from waveform baseline behavior.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>AvsE</h3>
+      <p class="small">
+        Amplitude versus Energy feature commonly used for pulse shape discrimination.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>GradAreaRatio</h3>
+      <p class="small">
+        Ratio of gradient area capturing waveform shape characteristics.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>GradWidthMain</h3>
+      <p class="small">
+        Gradient-based width measurement of the main pulse region.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>HFER</h3>
+      <p class="small">
+        High-Frequency Energy Ratio derived from spectral components of the waveform.
+      </p>
+    </div>
+
+    </div>
+  </div>
+
+</main>
   </div>
 </body>
 </html>
