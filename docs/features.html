@@ -27,49 +27,102 @@
     <!-- MAIN CONTENT -->
     <main class="content">
 
-      <div class="section">
-        <h1>Feature Engineering</h1>
+     <div class="section">
+  <h1>Feature Engineering</h1>
+  <p class="small">
+    Features were engineered from waveform data to capture pulse timing,
+    shape structure, tail behavior, gradient characteristics, and
+    frequency content.
+  </p>
+</div>
 
-        <div class="grid">
 
-          <div class="card">
-            <h3 style="margin-bottom: 6px;">Time-Domain Features</h3>
-            <p class="small">
-              We extract features directly from waveform shape to capture pulse timing and structure.
-            </p>
+<!-- ================= TIME DOMAIN ================= -->
+<div class="section">
+  <h2>Time-Domain Features</h2>
+  <div class="grid">
 
-            <ul class="small">
-              <li>LQ80 and ND80</li>
-              <li>Half-Width Peak (HWP)</li>
-              <li>Peak-to-Peak Ratio (PPR)</li>
-              <li>Energy Duration (ED)</li>
-              <li>Drift time metrics (tdrift10, tdrift50)</li>
-            </ul>
-          </div>
+    <div class="card"><h3>tp0</h3><p class="small">Estimated start time of the waveform rising edge.</p></div>
 
-          <div class="card">
-            <h3 style="margin-bottom: 6px;">Frequency-Domain Features</h3>
-            <p class="small">
-              Frequency-based features help distinguish signal-like and background-like pulse shapes.
-            </p>
+    <div class="card"><h3>ED</h3><p class="small">Energy duration measuring time required to accumulate 90% of signal energy.</p></div>
 
-            <ul class="small">
-              <li>Spectral Centroid Power</li>
-              <li>Total Power</li>
-              <li>Current Skewness and Kurtosis</li>
-              <li>Tail slope characteristics</li>
-            </ul>
-          </div>
+    <div class="card"><h3>HWP</h3><p class="small">Peak width between 25% and 75% amplitude levels.</p></div>
 
-        </div>
+    <div class="card"><h3>AvsE</h3><p class="small">Ratio of maximum slope (A) to total energy (E).</p></div>
 
-        <div class="card" style="margin-top: 20px;">
-          <p class="small">
-            All features are engineered with detector physics in mind, capturing charge drift behavior and pulse shape differences between single-site and multi-site events. These engineered features form the input space for both classification and regression models.
-          </p>
-        </div>
+    <div class="card"><h3>tdrift10</h3><p class="small">Drift time to 10% of peak amplitude.</p></div>
 
-      </div>
+    <div class="card"><h3>tdrift50</h3><p class="small">Drift time to 50% of peak amplitude.</p></div>
+
+    <div class="card"><h3>tdrift99</h3><p class="small">Drift time to 99% of peak amplitude.</p></div>
+
+    <div class="card"><h3>time_to_peak</h3><p class="small">Time difference between tp0 and maximum amplitude.</p></div>
+
+    <div class="card"><h3>time_to_main_peak</h3><p class="small">Time from tp0 to main pulse peak after max slope.</p></div>
+
+  </div>
+</div>
+
+
+<!-- ================= TAIL FEATURES ================= -->
+<div class="section">
+  <h2>Tail Features</h2>
+  <div class="grid">
+
+    <div class="card"><h3>tail_slope</h3><p class="small">Slope of deep tail region normalized by energy.</p></div>
+
+    <div class="card"><h3>LQ80</h3><p class="small">Late charge area difference starting at 80% rising edge.</p></div>
+
+    <div class="card"><h3>ND80</h3><p class="small">Notch depth below 80% amplitude prior to peak.</p></div>
+
+    <div class="card"><h3>tfr</h3><p class="small">Tail Flattening Ratio comparing raw and pole-zero corrected tail.</p></div>
+
+    <div class="card"><h3>PPR</h3><p class="small">Peak Plateau Ratio measuring late waveform flattening.</p></div>
+
+  </div>
+</div>
+
+
+<!-- ================= GRADIENT FEATURES ================= -->
+<div class="section">
+  <h2>Gradient Features</h2>
+  <div class="grid">
+
+    <div class="card"><h3>peak_count</h3><p class="small">Number of significant local maxima in waveform gradient.</p></div>
+
+    <div class="card"><h3>gbn</h3><p class="small">Gradient baseline noise RMS in pre-pulse region.</p></div>
+
+    <div class="card"><h3>current_skewness</h3><p class="small">Skewness of current waveform during rise.</p></div>
+
+    <div class="card"><h3>current_kurtosis</h3><p class="small">Kurtosis of current waveform during rise.</p></div>
+
+    <div class="card"><h3>current_width</h3><p class="small">Full Width at Half Maximum of current pulse.</p></div>
+
+    <div class="card"><h3>GradAreaRatio</h3><p class="small">Ratio of gradient area reflecting waveform geometry.</p></div>
+
+    <div class="card"><h3>GradWidthMain</h3><p class="small">Width of main gradient peak region.</p></div>
+
+  </div>
+</div>
+
+
+<!-- ================= FREQUENCY DOMAIN ================= -->
+<div class="section">
+  <h2>Frequency-Domain Features</h2>
+  <div class="grid">
+
+    <div class="card"><h3>SCA</h3><p class="small">Spectral centroid computed from amplitude spectrum.</p></div>
+
+    <div class="card"><h3>spectral_centroid_power</h3><p class="small">Spectral centroid computed from power spectrum.</p></div>
+
+    <div class="card"><h3>total_power</h3><p class="small">Log-transformed total power of frequency spectrum.</p></div>
+
+    <div class="card"><h3>HFER</h3><p class="small">High-Frequency Energy Ratio.</p></div>
+
+    <div class="card"><h3>bpr</h3><p class="small">Band Power Ratio comparing high and low frequency energy.</p></div>
+
+  </div>
+</div>
 
     </main>
   </div>
