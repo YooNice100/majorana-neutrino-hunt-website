@@ -12,7 +12,7 @@
 
 <body>
 
-  <!-- STICKY TOP NAV (shown after scrolling past hero) -->
+  <!-- STICKY TOP NAV -->
   <header class="topnav" id="topnav">
     <span class="topnav-brand">Majorana Neutrino Hunt</span>
     <nav class="topnav-links">
@@ -25,7 +25,7 @@
     </nav>
   </header>
 
-  <!-- HERO (full viewport) -->
+  <!-- HERO -->
   <section class="hero-screen">
     <div class="hero-bg">
       <div class="orb orb1"></div>
@@ -53,10 +53,8 @@
     </div>
   </section>
 
-  <!-- NAV ANCHOR (nav becomes sticky when this hits top) -->
   <div id="nav-trigger"></div>
 
-  <!-- INLINE NAV BAR (embedded in page flow) -->
   <div class="inline-nav" id="inline-nav">
     <div class="inline-nav-inner">
       <nav class="inline-nav-links">
@@ -70,49 +68,190 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
   <main class="content-area">
 
-    <div class="note-banner">
-      <span class="note-icon">⚗️</span>
-      This site summarizes our DSC 180 capstone project. Regression is in progress and will be added as results are finalized.
+
+
+    <section class="section">
+  <div class="section-label">Overview</div>
+  <h2 class="section-heading">Project Overview</h2>
+
+  <p class="section-intro">
+    Our project explores how machine learning can help analyze detector
+    waveform data from the Majorana Demonstrator experiment. By learning
+    patterns in detector signals, our models help distinguish meaningful
+    physics events from background noise.
+  </p>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>The Physics Motivation</h3>
+      <p>
+        One of the biggest open questions in physics is why the universe is
+        made of matter at all. According to the Big Bang theory, equal
+        amounts of matter and antimatter should have been created and
+        destroyed each other. The fact that matter dominates the universe
+        suggests that some unknown physical process favored matter over
+        antimatter.
+      </p>
     </div>
 
-    <section id="overview" class="section">
-      <h2 class="section-heading">Introduction</h2>
+    <div class="card">
+      <h3>Searching for Rare Events</h3>
+      <p>
+        Experiments such as the Majorana Demonstrator search for a rare
+        nuclear process called <strong>neutrinoless double beta decay</strong>.
+        If observed, this process would show that neutrinos are their own
+        antiparticles and could help explain the origin of matter in the
+        universe.
+      </p>
+    </div>
+
+    <div class="card wide">
+      <h3>The Role of Machine Learning</h3>
+      <p>
+        Each interaction inside the detector produces an electrical waveform.
+        However, the true signal is extremely rare and is buried among many
+        background interactions. Our machine learning models analyze waveform
+        features to distinguish <strong>single-site events (SSE)</strong>,
+        which may contain signal, from <strong>multi-site events (MSE)</strong>,
+        which are typically background noise.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+    
+
+    
+
+    <!-- NEUTRINOLESS DOUBLE BETA DECAY -->
+    <section class="section">
+      <div class="section-label">Physics</div>
+      <h2 class="section-heading">Neutrinoless Double Beta Decay</h2>
+      <p class="section-intro">
+        A hypothesized nuclear process that, if observed, would rewrite our understanding
+        of particle physics and the origin of matter.
+      </p>
+      <div class="two-col">
+        <div class="image-block">
+          <img src="images/neutrinolessdoublebetadecay.jpg"
+               alt="Diagram comparing standard double beta decay and neutrinoless double beta decay">
+        </div>
+        <div class="card-stack">
+          <div class="card">
+            <h3>Standard Double Beta Decay</h3>
+            <p>Two neutrons convert into two protons, emitting two electrons and two neutrinos. This process has been observed experimentally.</p>
+          </div>
+          <div class="card">
+            <h3>The Neutrinoless Version</h3>
+            <p>In the hypothesized neutrinoless version, no neutrinos are emitted. This is only possible if neutrinos are Majorana particles — their own antiparticles.</p>
+          </div>
+          <div class="card">
+            <h3>Why It Would Matter</h3>
+            <p>Observing this process would confirm lepton number violation and answer fundamental questions about the origin of matter in the universe.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE MAJORANA DEMONSTRATOR -->
+    <section class="section">
+      <div class="section-label">Experiment</div>
+      <h2 class="section-heading">The Majorana Demonstrator</h2>
+      <p class="section-intro">
+        An experiment using ultra-pure germanium detectors, shielded deep underground,
+        to search for evidence of neutrinoless double beta decay.
+      </p>
+      <div class="two-col">
+        <div class="card-stack">
+          <div class="card">
+            <h3>How It Works</h3>
+            <p>When energy is deposited inside the detector, it produces a tiny electrical waveform. The shape of this waveform contains information about what type of interaction occurred.</p>
+          </div>
+          <div class="card">
+            <h3>Single-Site vs Multi-Site Events</h3>
+            <p>Signal-like interactions tend to produce <strong>single-site events (SSE)</strong>, while background radiation typically produces <strong>multi-site events (MSE)</strong> that must be filtered out.</p>
+          </div>
+        </div>
+        <div class="image-block">
+          <img src="images/germaniumdetector.jpg"
+               alt="Germanium detector array used in the Majorana Demonstrator experiment">
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR APPROACH -->
+    <section class="section">
+      <div class="section-label">Methodology</div>
+      <h2 class="section-heading">Our Approach</h2>
+      <p class="section-intro">
+        By extracting high-dimensional features from raw detector waveforms, we trained
+        gradient boosting models to distinguish signal from background with higher precision
+        than traditional cut-based methods.
+      </p>
       <div class="card-grid">
         <div class="card">
-          <div class="card-icon">🔬</div>
-          <h3>The Goal</h3>
+          <h3>Feature Extraction</h3>
           <p>
-            Our research supports the search for neutrinoless double beta decay by applying machine learning 
-            to detector waveform data from the Majorana Demonstrator experiment.
+            We extracted physics-informed waveform features — including A/E (current amplitude),
+            drift time, LQ80, and 23 others — capturing pulse shape, timing, tail behavior,
+            gradient, and frequency characteristics.
           </p>
         </div>
         <div class="card">
-          <div class="card-icon">⚡</div>
-          <h3>The Signal</h3>
+          <h3>Classification</h3>
           <p>
-            This rare process is expected to occur in single-site events (SSE), while background interactions 
-            often produce multi-site events (MSE) — and we need ML to tell them apart.
+            XGBoost and LightGBM models were trained to classify localized
+            Single-Site Events (SSE) — the potential signal — from scattered
+            Multi-Site Events (MSE), the background noise.
           </p>
         </div>
-        <div class="card wide">
-          <div class="card-icon">🧠</div>
-          <h3>Our Approach</h3>
+        <div class="card">
+          <h3>Energy Regression</h3>
           <p>
-            We engineered physics-informed waveform features that capture pulse shape, timing, and frequency 
-            characteristics. These features were used to train classification models that distinguish signal-like 
-            SSE from background-like MSE, and regression models to estimate continuous energy values.
+            Regression models estimate continuous energy values from extracted features,
+            improving reconstruction of detector events and supporting downstream
+            physics analysis.
           </p>
         </div>
       </div>
     </section>
 
+    <!-- KEY RESULTS -->
+    <section class="section">
+      <div class="section-label">Findings</div>
+      <h2 class="section-heading">Key Results</h2>
+      <p class="section-intro">
+        Our models successfully classify events and estimate energy from waveform features,
+        supporting the search for rare physics signals in the Majorana Demonstrator and LEGEND experiments.
+      </p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Classification</h3>
+          <p>Models trained on engineered waveform features successfully distinguish single-site from multi-site events across four PSD label types, outperforming traditional cut-based approaches.</p>
+        </div>
+        <div class="card">
+          <h3>Energy Prediction</h3>
+          <p>Regression models estimate continuous energy values from extracted features, improving reconstruction accuracy of detector events.</p>
+        </div>
+        <div class="card wide">
+          <h3>Impact</h3>
+          <p>Improved event classification helps the LEGEND and Majorana experiments focus on the rare interactions that could reveal the origin of matter in the universe.</p>
+        </div>
+      </div>
+
+      <!-- <div class="note-banner" style="margin-top: 28px;">
+        <span class="note-icon">⚗️</span>
+        This site summarizes our DSC 180 capstone project. Regression results are in progress and will be updated as experiments are finalized.
+      </div> -->
+    </section>
+
   </main>
 
   <script>
-    // Sticky nav logic
     const topnav = document.getElementById('topnav');
     const inlineNav = document.getElementById('inline-nav');
     const navTrigger = document.getElementById('nav-trigger');
@@ -131,7 +270,6 @@
     );
     observer.observe(navTrigger);
 
-    // Particle field
     const field = document.getElementById('particles');
     for (let i = 0; i < 60; i++) {
       const dot = document.createElement('div');

@@ -1,18 +1,39 @@
 /* ============================================================
    ROOT & RESET
    ============================================================ */
-:root {
-  --bg: #08081a;
-  --bg-surface: #0f0f2a;
-  --text: #e8e8f5;
-  --text-muted: #8888bb;
-  --border: rgba(120, 80, 255, 0.2);
+/* :root {
+  --bg: #0e0e1f;
+  --bg-surface: #15152e;
+  --text: #f0f0fa;
+  --text-muted: #a0a0c8;
+  --border: rgba(150, 110, 255, 0.22);
   --accent: #7c3aed;
-  --accent-bright: #a855f7;
-  --accent-blue: #3b82f6;
-  --accent-cyan: #06b6d4;
-  --card-bg: rgba(255, 255, 255, 0.04);
-  --card-hover: rgba(124, 58, 237, 0.12);
+  --accent-bright: #b07ef8;
+  --accent-blue: #60a5fa;
+  --accent-cyan: #34d4e8;
+  --card-bg: rgba(255, 255, 255, 0.07);
+  --card-hover: rgba(124, 58, 237, 0.14);
+  --nav-h: 56px;
+} */
+
+:root {
+  --bg: #12122a;
+  --bg-surface: #1a1a3a;
+
+  --text: #f7f7ff;
+  --text-muted: #b8b8e8;
+
+  --border: rgba(150, 110, 255, 0.28);
+
+  --accent: #7c3aed;
+  --accent-bright: #c39bff;
+
+  --accent-blue: #7fb6ff;
+  --accent-cyan: #5de6f5;
+
+  --card-bg: rgba(255, 255, 255, 0.10);
+  --card-hover: rgba(124, 58, 237, 0.18);
+
   --nav-h: 56px;
 }
 
@@ -385,12 +406,14 @@ body {
   gap: 16px;
 }
 
+
 .card {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 24px;
   transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
 }
 
 .card:hover {
@@ -980,7 +1003,60 @@ body.subpage .topnav {
 }
 
 /* ============================================================
-   LEGACY CLASSES (kept for other pages compatibility)
+   OVERVIEW PAGE SECTION COMPONENTS
+   ============================================================ */
+
+.section {
+  margin-bottom: 72px;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 10px;
+}
+
+.section-intro {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 65ch;
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+/* Two-column layout: image + cards side by side */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .two-col { grid-template-columns: 1fr; }
+}
+
+/* Image block inside two-col */
+.image-block img {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  display: block;
+}
+
+/* Stack of cards inside two-col */
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ============================================================
+   LEGACY / OVERRIDE
    ============================================================ */
 .container {
   max-width: 980px;
