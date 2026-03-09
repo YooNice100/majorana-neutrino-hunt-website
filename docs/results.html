@@ -39,7 +39,6 @@
 
     <main class="subpage-content">
 
-      <!-- CATEGORY NAV -->
       <div class="category-nav">
         <a href="#classification" class="cat-link active">Classification</a>
         <a href="#high-avse" class="cat-link">High AvsE</a>
@@ -52,17 +51,12 @@
         <a href="#lgbm" class="cat-link">LightGBM</a>
       </div>
 
-      <!-- ================================================================ -->
-      <!-- CLASSIFICATION OVERVIEW                                           -->
-      <!-- ================================================================ -->
       <section id="classification" class="feature-section">
         <div class="results-section-title">
           <div class="feature-section-badge time">Classification</div>
           <h2>Classification Results</h2>
           <p>
-            Four Random Forest classifiers were trained — one per PSD label type —
-            to distinguish single-site events (SSE) from multi-site events (MSE).
-            F1 score was used as the primary metric due to class imbalance.
+            We evaluated several models to distinguish single-site events (SSE) from multi-site events (MSE) across four PSD label types. Because the optimal approach depended on the specific label, our final selected models vary: XGBoost for High AvsE, Random Forest for Low AvsE and LQ, and a Neural Network for DCR.
           </p>
         </div>
         <div class="metric-strip">
@@ -71,8 +65,8 @@
             <span class="metric-chip-value">F1 Score</span>
           </div>
           <div class="metric-chip">
-            <span class="metric-chip-label">Model Family</span>
-            <span class="metric-chip-value">Random Forest</span>
+            <span class="metric-chip-label">Top Performers</span>
+            <span class="metric-chip-value">RF, XGBoost, NN</span>
           </div>
           <div class="metric-chip">
             <span class="metric-chip-label">Task</span>
@@ -85,7 +79,6 @@
         </div>
       </section>
 
-      <!-- ───── HIGH AVSE ───── -->
       <section id="high-avse" class="feature-section result-subsection">
         <div class="result-subsection-header">
           <div class="result-owner-badge">
@@ -100,30 +93,25 @@
         <div class="result-body">
           <div class="score-card">
             <div class="score-label">F1 Score</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.997</div>
           </div>
           <div class="score-card">
             <div class="score-label">Precision</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.998</div>
           </div>
           <div class="score-card">
             <div class="score-label">Recall</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.996</div>
           </div>
         </div>
         <div class="result-description">
-          <p>Add description of High AvsE model performance here.</p>
+          <p><strong>Chosen Model: XGBoost.</strong> It effectively isolated background features in a severely imbalanced dataset, maintaining high precision while correctly capturing essential timing and pulse-shape information.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📊 Confusion matrix / plot goes here</span>
-          <!-- <img src="images/high_avse_cm.png" alt="High AvsE Confusion Matrix" /> -->
-        </div>
+          </div>
       </section>
 
-      <!-- ───── LOW AVSE ───── -->
       <section id="low-avse" class="feature-section result-subsection">
         <div class="result-subsection-header">
           <div class="result-owner-badge">
@@ -138,30 +126,25 @@
         <div class="result-body">
           <div class="score-card">
             <div class="score-label">F1 Score</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.946</div>
           </div>
           <div class="score-card">
             <div class="score-label">Precision</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.930</div>
           </div>
           <div class="score-card">
             <div class="score-label">Recall</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.962</div>
           </div>
         </div>
         <div class="result-description">
-          <p>Add description of Low AvsE model performance here.</p>
+          <p><strong>Chosen Model: Random Forest.</strong> Selected for its ability to capture nonlinear dependencies, it achieved a high recall—which is critical in rare-event searches to minimize the loss of true signal events.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📊 Confusion matrix / plot goes here</span>
-          <!-- <img src="images/low_avse_cm.png" alt="Low AvsE Confusion Matrix" /> -->
-        </div>
+          </div>
       </section>
 
-      <!-- ───── DCR ───── -->
       <section id="dcr" class="feature-section result-subsection">
         <div class="result-subsection-header">
           <div class="result-owner-badge">
@@ -176,30 +159,25 @@
         <div class="result-body">
           <div class="score-card">
             <div class="score-label">F1 Score</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.993</div>
           </div>
           <div class="score-card">
             <div class="score-label">Precision</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.986</div>
           </div>
           <div class="score-card">
             <div class="score-label">Recall</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.999</div>
           </div>
         </div>
         <div class="result-description">
-          <p>Add description of DCR model performance here.</p>
+          <p><strong>Chosen Model: Neural Network.</strong> This model provided the best performance for identifying delayed charge recovery. It successfully handled the extreme 98.1% class imbalance, reducing false negatives better than tree-based models.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📊 Confusion matrix / plot goes here</span>
-          <!-- <img src="images/dcr_cm.png" alt="DCR Confusion Matrix" /> -->
-        </div>
+          </div>
       </section>
 
-      <!-- ───── LQ ───── -->
       <section id="lq" class="feature-section result-subsection">
         <div class="result-subsection-header">
           <div class="result-owner-badge">
@@ -214,40 +192,32 @@
         <div class="result-body">
           <div class="score-card">
             <div class="score-label">F1 Score</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.902</div>
           </div>
           <div class="score-card">
             <div class="score-label">Precision</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.856</div>
           </div>
           <div class="score-card">
             <div class="score-label">Recall</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">0.952</div>
           </div>
         </div>
         <div class="result-description">
-          <p>Add description of LQ model performance here.</p>
+          <p><strong>Chosen Model: Random Forest.</strong> A threshold-tuned Random Forest model was selected for identifying late charge events. Calibrating the decision threshold to 0.40 significantly improved the F1 score, proving nonlinear boundaries were necessary.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📊 Confusion matrix / plot goes here</span>
-          <!-- <img src="images/lq_cm.png" alt="LQ Confusion Matrix" /> -->
-        </div>
+          </div>
       </section>
 
-      <!-- ================================================================ -->
-      <!-- REGRESSION OVERVIEW                                               -->
-      <!-- ================================================================ -->
       <section id="regression" class="feature-section">
         <div class="results-section-divider"></div>
         <div class="results-section-title">
           <div class="feature-section-badge grad">Regression</div>
-          <h2>Regression Results</h2>
+          <h2>Energy Reconstruction</h2>
           <p>
-            Three regression models were trained to predict continuous energy values from
-            engineered waveform features, evaluated using MSE and RMSE with 5-fold cross-validation.
+            To reconstruct continuous energy values from waveform features, we evaluated Linear Regression, XGBoost, and LightGBM. XGBoost was selected as the final model due to its superior precision and best overall agreement with the true energy distribution.
           </p>
         </div>
         <div class="metric-strip">
@@ -260,13 +230,12 @@
             <span class="metric-chip-value">5-Fold CV</span>
           </div>
           <div class="metric-chip">
-            <span class="metric-chip-label">Models</span>
-            <span class="metric-chip-value">3 Regressors</span>
+            <span class="metric-chip-label">Chosen Model</span>
+            <span class="metric-chip-value">XGBoost</span>
           </div>
         </div>
       </section>
 
-      <!-- ───── LINEAR REGRESSION ───── -->
       <section id="linear" class="feature-section result-subsection">
         <div class="result-subsection-header">
           <div class="result-owner-badge">
@@ -281,30 +250,25 @@
         <div class="result-body">
           <div class="score-card">
             <div class="score-label">MSE</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">5896.10</div>
           </div>
           <div class="score-card">
             <div class="score-label">RMSE</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">76.79</div>
           </div>
           <div class="score-card">
-            <div class="score-label">CV Score</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-label">$R^2$ Score</div>
+            <div class="score-value">N/A</div>
           </div>
         </div>
         <div class="result-description">
-          <p>Add description of Linear Regression baseline performance here.</p>
+          <p>Served as our baseline. It captured broad spectral shapes but smoothed out sharp features and deviated at high energies, proving linear boundaries are insufficient for charge collection dynamics.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📈 Prediction vs actual / residual plot goes here</span>
-          <!-- <img src="images/linear_results.png" alt="Linear Regression Results" /> -->
-        </div>
+          </div>
       </section>
 
-      <!-- ───── XGBOOST ───── -->
       <section id="xgboost" class="feature-section result-subsection">
         <div class="result-subsection-header">
           <div class="result-owner-badge">
@@ -319,30 +283,25 @@
         <div class="result-body">
           <div class="score-card">
             <div class="score-label">MSE</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">942.77</div>
           </div>
           <div class="score-card">
             <div class="score-label">RMSE</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">30.70</div>
           </div>
           <div class="score-card">
-            <div class="score-label">CV Score</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-label">$R^2$ Score</div>
+            <div class="score-value">N/A</div>
           </div>
         </div>
         <div class="result-description">
-          <p>Add description of XGBoost model performance and comparison to baseline here.</p>
+          <p><strong>Chosen Model.</strong> It reduced RMSE by over 56% compared to the baseline, successfully preserving key peak positions by utilizing total signal power and localized nonlinear corrections.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📈 Prediction vs actual / residual plot goes here</span>
-          <!-- <img src="images/xgboost_results.png" alt="XGBoost Results" /> -->
-        </div>
+          </div>
       </section>
 
-      <!-- ───── LIGHTGBM ───── -->
       <section id="lgbm" class="feature-section result-subsection">
         <div class="result-subsection-header">
           <div class="result-owner-badge">
@@ -357,27 +316,23 @@
         <div class="result-body">
           <div class="score-card">
             <div class="score-label">MSE</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">955.74</div>
           </div>
           <div class="score-card">
             <div class="score-label">RMSE</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-value">30.90</div>
           </div>
           <div class="score-card">
-            <div class="score-label">CV Score</div>
-            <div class="score-value">—</div>
-            <div class="score-sub">To be filled</div>
+            <div class="score-label">$R^2$ Score</div>
+            <div class="score-value">0.997</div>
           </div>
         </div>
         <div class="result-description">
-          <p>Add description of LightGBM model performance and comparison to baseline here.</p>
+          <p>An alternative gradient-boosted approach that also performed exceptionally well, producing very few large errors and maintaining the physical structure of the true energy spectrum.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📈 Prediction vs actual / residual plot goes here</span>
-          <!-- <img src="images/lgbm_results.png" alt="LightGBM Results" /> -->
-        </div>
+          </div>
       </section>
 
     </main>

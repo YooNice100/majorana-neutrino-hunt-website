@@ -12,7 +12,8 @@
 
 <body class="subpage">
 
-  <!-- STICKY TOP NAV -->
+  
+
   <header class="topnav visible" id="topnav">
     <span class="topnav-brand">Majorana Neutrino Hunt</span>
     <nav class="topnav-links">
@@ -25,10 +26,8 @@
     </nav>
   </header>
 
-  <!-- PAGE CONTENT -->
   <div class="subpage-layout">
 
-    <!-- PAGE HEADER -->
     <div class="page-header">
       <div class="page-header-inner">
         <p class="page-eyebrow">Analysis</p>
@@ -42,7 +41,29 @@
 
     <main class="subpage-content">
 
-      <!-- CATEGORY NAV -->
+      <section class="feature-section">
+  <div class="feature-section-header">
+    <div class="feature-section-badge time">Overview</div>
+    <h2>Why Feature Engineering?</h2>
+    <p>Transforming raw detector signals into machine-learning features.</p>
+  </div>
+
+  <div class="data-prose-card">
+    <p>
+      Each interaction inside the Majorana germanium detectors produces a raw electrical waveform.
+      While these waveforms contain hundreds of time samples, machine learning models often perform
+      better when the signal is summarized into meaningful numerical features.
+    </p>
+
+    <p>
+      We therefore extracted physics-motivated features that describe important characteristics of
+      the waveform, including its rise time, tail behavior, gradient structure, and frequency
+      content. These engineered features allow machine learning models to identify patterns that
+      distinguish single-site signal events from background interactions.
+    </p>
+  </div>
+</section>
+
       <div class="category-nav">
         <a href="#time-domain" class="cat-link active">Time Domain</a>
         <a href="#tail" class="cat-link">Tail</a>
@@ -50,7 +71,6 @@
         <a href="#frequency" class="cat-link">Frequency Domain</a>
       </div>
 
-      <!-- ================= TIME DOMAIN ================= -->
       <section id="time-domain" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge time">Time Domain</div>
@@ -60,44 +80,43 @@
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag time">tp0</span>
-            <p>Estimated start time of the waveform rising edge.</p>
+            <p>Identifies the onset of the rising edge of the waveform.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">ED</span>
-            <p>Energy duration measuring time required to accumulate 90% of signal energy.</p>
+            <p>Measures the number of time samples required for the waveform to accumulate 90% of its total energy.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">HWP</span>
-            <p>Peak width between 25% and 75% amplitude levels.</p>
+            <p>Measures the temporal width of the waveform between 25% and 75% of its peak amplitude.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">AvsE</span>
-            <p>Ratio of maximum slope (A) to total energy (E).</p>
+            <p>Calculates the maximum current amplitude divided by the event energy to normalize the steepness of the rising edge.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">tdrift10</span>
-            <p>Drift time to 10% of peak amplitude.</p>
+            <p>Counts the number of samples from the onset time to the point where the waveform reaches 10% of its peak amplitude.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">tdrift50</span>
-            <p>Drift time to 50% of peak amplitude.</p>
+            <p>Counts the number of samples from the onset time to the point where the waveform reaches 50% of its peak amplitude.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">tdrift99</span>
-            <p>Drift time to 99% of peak amplitude.</p>
+            <p>Counts the number of samples from the onset time to the point where the waveform reaches 99.9% of its peak amplitude.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">time_to_peak</span>
-            <p>Time difference between tp0 and maximum amplitude.</p>
+            <p>Measures the number of samples between the waveform onset time and its maximum amplitude.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag time">time_to_main_peak</span>
-            <p>Time from tp0 to main pulse peak after max slope.</p>
+            <p>Measures how quickly the waveform reaches its dominant peak after the initial onset.</p>
           </div>
         </div>
       </section>
 
-      <!-- ================= TAIL ================= -->
       <section id="tail" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge tail">Tail</div>
@@ -107,28 +126,27 @@
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag tail">tail_slope</span>
-            <p>Slope of deep tail region normalized by energy.</p>
+            <p>Measures the linear decay rate of the waveform tail, capturing differences in late-time charge dissipation.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag tail">LQ80</span>
-            <p>Late charge area difference starting at 80% rising edge.</p>
+            <p>Quantifies the amount of delayed charge collected after the waveform reaches 80% of its rise.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag tail">ND80</span>
-            <p>Notch depth below 80% amplitude prior to peak.</p>
+            <p>Measures the maximum downward deviation below the 80% rise level to identify small notch-like structures.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag tail">tfr</span>
-            <p>Tail Flattening Ratio comparing raw and pole-zero corrected tail.</p>
+            <p>Compares the standard deviation of the waveform tail before and after pole-zero correction to measure tail flattening.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag tail">PPR</span>
-            <p>Peak Plateau Ratio measuring late waveform flattening.</p>
+            <p>Calculates the ratio of the late-time plateau average to the peak amplitude to identify incomplete charge collection.</p>
           </div>
         </div>
       </section>
 
-      <!-- ================= GRADIENT ================= -->
       <section id="gradient" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge grad">Gradient</div>
@@ -138,36 +156,35 @@
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag grad">peak_count</span>
-            <p>Number of significant local maxima in waveform gradient.</p>
+            <p>Counts the number of significant local maxima in the gradient waveform to identify multi-site events.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">gbn</span>
-            <p>Gradient baseline noise RMS in pre-pulse region.</p>
+            <p>Measures the root mean square of the gradient waveform in the pre-rise baseline region to quantify derivative-level noise.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">current_skewness</span>
-            <p>Skewness of current waveform during rise.</p>
+            <p>Measures the asymmetry of the gradient-transformed waveform between the onset time and the peak.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">current_kurtosis</span>
-            <p>Kurtosis of current waveform during rise.</p>
+            <p>Measures the peakedness of the gradient waveform during the rising edge to identify sharp current spikes.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">current_width</span>
-            <p>Full Width at Half Maximum of current pulse.</p>
+            <p>Measures the temporal width of the gradient waveform near its maximum to determine if charge collection is concentrated.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">GradAreaRatio</span>
-            <p>Ratio of gradient area reflecting waveform geometry.</p>
+            <p>Compares the area under the largest gradient peak to the second largest peak.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">GradWidthMain</span>
-            <p>Width of main gradient peak region.</p>
+            <p>Measures the temporal width of the dominant gradient peak.</p>
           </div>
         </div>
       </section>
 
-      <!-- ================= FREQUENCY DOMAIN ================= -->
       <section id="frequency" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge freq">Frequency Domain</div>
@@ -177,23 +194,23 @@
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag freq">SCA</span>
-            <p>Spectral centroid computed from amplitude spectrum.</p>
+            <p>Represents the center of mass of the signal's frequency spectrum, calculated as the amplitude-weighted average of frequency components.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag freq">spectral_centroid_power</span>
-            <p>Spectral centroid computed from power spectrum.</p>
+            <p>Summarizes where the majority of frequency energy is concentrated by finding the center of mass of the power spectrum.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag freq">total_power</span>
-            <p>Log-transformed total power of frequency spectrum.</p>
+            <p>Sums all frequency components in the power spectrum to measure overall waveform variability and high-frequency content.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag freq">HFER</span>
-            <p>High-Frequency Energy Ratio.</p>
+            <p>Measures the concentration of high-frequency energy in the waveform spectrum after normalization.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag freq">bpr</span>
-            <p>Band Power Ratio comparing high and low frequency energy.</p>
+            <p>Compares the high-frequency power to low-frequency power to capture complex charge structures.</p>
           </div>
         </div>
       </section>
@@ -202,7 +219,6 @@
   </div>
 
   <script>
-    // Highlight category nav on scroll
     const sections = document.querySelectorAll('.feature-section');
     const catLinks = document.querySelectorAll('.cat-link');
 

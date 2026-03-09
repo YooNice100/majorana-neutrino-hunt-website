@@ -12,7 +12,6 @@
 
 <body class="subpage">
 
-  <!-- STICKY TOP NAV -->
   <header class="topnav visible">
     <span class="topnav-brand">Majorana Neutrino Hunt</span>
     <nav class="topnav-links">
@@ -27,7 +26,6 @@
 
   <div class="subpage-layout">
 
-    <!-- PAGE HEADER -->
     <div class="page-header">
       <div class="page-header-inner">
         <p class="page-eyebrow">Dataset</p>
@@ -41,57 +39,52 @@
 
     <main class="subpage-content">
 
-      <!-- CATEGORY NAV -->
       <div class="category-nav">
         <a href="#source" class="cat-link active">Source</a>
         <a href="#structure" class="cat-link">Structure</a>
         <a href="#labels" class="cat-link">Labels</a>
       </div>
 
-      <!-- SOURCE -->
       <section id="source" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge time">Source</div>
           <h2>Data Source</h2>
           <p>Raw waveform data from the Majorana Demonstrator germanium detector array.</p>
         </div>
+
         <div class="data-prose-card">
           <p>
-            Our dataset consists of detector waveforms collected by the Majorana Demonstrator experiment.
-            Each waveform represents charge collection behavior in high-purity germanium (HPGe) detectors,
-            which are among the most sensitive instruments for searching for neutrinoless double beta decay.
+            Our dataset consists of approximately three million high-purity germanium (HPGe) detector waveforms stored in HDF5 format. The data represents a 1% subset of 228Th calibration runs released by the Majorana Demonstrator Collaboration for AI and machine learning applications.
           </p>
           <p>
-            The Majorana Demonstrator was operated at the Sanford Underground Research Facility (SURF)
-            in Lead, South Dakota, shielded from cosmic rays to reduce background noise.
+            The raw digitized waveform arrays store ADC counts that represent charge collection over time inside the germanium crystal. This raw data is essential for our goal of filtering complex background noise to achieve a near-background-free search.
           </p>
         </div>
       </section>
 
-      <!-- STRUCTURE -->
       <section id="structure" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge tail">Structure</div>
           <h2>Data Structure</h2>
           <p>Format and organization of the raw waveform files.</p>
         </div>
+
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag tail">HDF5 Files</span>
-            <p>Waveforms stored in HDF5 format for efficient hierarchical data access and compression.</p>
+            <p>Waveforms are stored in HDF5 format, with each file containing approximately 65,000 waveforms sampled at 100 MHz.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag tail">Time Series</span>
-            <p>Fixed-length time-series samples capturing the full charge pulse from each detector event.</p>
+            <p>Each raw waveform is an array of 3,800 digitized ADC counts representing the charge pulse over time.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag tail">Event Level</span>
-            <p>Each entry corresponds to a single physics event, with waveform and metadata stored together.</p>
+            <p>Each record includes the waveform, onset time (tp0), learning targets, and metadata such as the detector and run number IDs.</p>
           </div>
         </div>
       </section>
 
-      <!-- LABELS -->
       <section id="labels" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge grad">Labels</div>
@@ -101,11 +94,11 @@
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag grad">PSD Labels</span>
-            <p>Event-level pulse shape discrimination labels classifying events as single-site (SSE) or multi-site (MSE).</p>
+            <p>Four binary targets (low_avse, high_avse, dcr, and lq) where a 1 indicates an accepted signal-like event and a 0 indicates rejection as background.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">Energy Labels</span>
-            <p>Continuous energy values in keV used as targets for regression model training and evaluation.</p>
+            <p>The energy_label provides the calibrated event energy in keV, serving as the continuous target for our regression models.</p>
           </div>
         </div>
       </section>

@@ -46,19 +46,21 @@
         <a href="#evaluation" class="cat-link">Evaluation</a>
       </div>
 
-      <!-- PIPELINE -->
       <section id="pipeline" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge time">Pipeline</div>
           <h2>Overall Pipeline</h2>
           <p>End-to-end flow from raw waveforms to model predictions.</p>
         </div>
+        
+        
+        
         <div class="pipeline-steps">
           <div class="pipeline-step">
             <div class="step-num">01</div>
             <div class="step-body">
-              <h3>Waveform Ingestion</h3>
-              <p>Load raw waveforms from HDF5 files. Apply baseline correction and pole-zero cancellation to normalize detector response.</p>
+              <h3>Waveform Ingestion & Preprocessing</h3>
+              <p>Load raw waveforms from HDF5 files. Apply baseline subtraction, Gaussian or Savitzky-Golay smoothing, and pole-zero correction to normalize detector response. Convert to frequency space and compute gradients.</p>
             </div>
           </div>
           <div class="pipeline-arrow">↓</div>
@@ -66,7 +68,7 @@
             <div class="step-num">02</div>
             <div class="step-body">
               <h3>Feature Extraction</h3>
-              <p>Compute 26 physics-informed features spanning time-domain, tail, gradient, and frequency-domain characteristics.</p>
+              <p>Compute over 20 physics-informed features. These span rise-time dynamics, local peak structure, tail charge behavior, current-pulse statistics, and frequency-domain characteristics.</p>
             </div>
           </div>
           <div class="pipeline-arrow">↓</div>
@@ -74,67 +76,71 @@
             <div class="step-num">03</div>
             <div class="step-body">
               <h3>Model Training</h3>
-              <p>Train classification models (SSE vs MSE) and regression models (energy estimation) on extracted feature vectors.</p>
+              <p>Train classification models to predict four PSD labels to differentiate SSE from MSE. Train regression models to reconstruct continuous event energy in keV.</p>
             </div>
           </div>
           <div class="pipeline-arrow">↓</div>
           <div class="pipeline-step">
             <div class="step-num">04</div>
             <div class="step-body">
-              <h3>Evaluation</h3>
-              <p>Assess model performance using held-out test sets with task-appropriate metrics.</p>
+              <h3>Validation & Tuning</h3>
+              <p>Optimize hyperparameters via 5-fold cross-validation and tune decision thresholds to handle severe class imbalances. Assess final performance on a held-out test set.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CLASSIFICATION -->
       <section id="classification" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge tail">Classification</div>
           <h2>Classification Models</h2>
-          <p>Distinguishing signal-like single-site events (SSE) from background multi-site events (MSE).</p>
+          <p>Distinguishing signal-like single-site events (SSE) from background multi-site events (MSE) across four PSD targets.</p>
         </div>
+        
+        
+        
         <div class="feature-grid">
           <div class="feature-card">
-            <span class="feat-tag tail">Random Forest</span>
-            <p>Ensemble of decision trees trained on engineered features. Robust to outliers and provides feature importance rankings.</p>
+            <span class="feat-tag tail">Logistic Regression</span>
+            <p>Linear baseline model used to assess if the engineered feature space was approximately linearly separable.</p>
           </div>
           <div class="feature-card">
-            <span class="feat-tag tail">Gradient Boosting</span>
-            <p>Sequential boosting approach that iteratively corrects misclassified events for high precision on imbalanced data.</p>
+            <span class="feat-tag tail">Random Forest & BRF</span>
+            <p>Ensemble of decision trees that captures nonlinear dependencies. Balanced Random Forest variants undersample the majority class per tree to handle imbalances.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag tail">XGBoost Classifier</span>
+            <p>Gradient-boosted tree model that iteratively corrects errors, achieving the highest precision for the high_avse target.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag tail">Neural Network</span>
-            <p>Fully connected network trained end-to-end on feature vectors, capturing non-linear decision boundaries.</p>
+            <p>A multi-layer perceptron with two hidden layers (64 and 32 nodes), which provided the best performance for identifying delayed charge recovery.</p>
           </div>
         </div>
       </section>
 
-      <!-- REGRESSION -->
       <section id="regression" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge grad">Regression</div>
           <h2>Regression Models</h2>
-          <p>Estimating continuous energy values from waveform features. Currently in progress.</p>
-        </div>
-        <div class="note-banner" style="margin-bottom: 24px;">
-          <span class="note-icon">⚗️</span>
-          Regression results are in progress and will be updated as experiments are finalized.
+          <p>Estimating continuous energy values directly from engineered waveform features.</p>
         </div>
         <div class="feature-grid">
           <div class="feature-card">
-            <span class="feat-tag grad">Ridge Regression</span>
-            <p>Regularized linear model providing a baseline for energy estimation from feature vectors.</p>
+            <span class="feat-tag grad">Linear Regression</span>
+            <p>Baseline model that captures broad spectral shapes but struggles with nonlinear charge collection dynamics at higher energies.</p>
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">XGBoost Regressor</span>
-            <p>Gradient boosted trees adapted for continuous target prediction with strong generalization.</p>
+            <p>Gradient-boosted decision trees with regularization, capable of applying localized, nonlinear corrections to preserve sharp peak structures.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag grad">LightGBM Regressor</span>
+            <p>Histogram-based gradient boosting framework that improves computational efficiency while accurately capturing complex feature interactions[.</p>
           </div>
         </div>
       </section>
 
-      <!-- EVALUATION -->
       <section id="evaluation" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge freq">Evaluation</div>
@@ -143,20 +149,20 @@
         </div>
         <div class="feature-grid">
           <div class="feature-card">
-            <span class="feat-tag freq">AUC-ROC</span>
-            <p>Area under the ROC curve used as the primary classification metric, robust to class imbalance.</p>
+            <span class="feat-tag freq">MCC & F1 Score</span>
+            <p>Matthews Correlation Coefficient and F1 Score were prioritized for classification to account for severe class imbalances across PSD labels.</p>
           </div>
           <div class="feature-card">
-            <span class="feat-tag freq">Precision & Recall</span>
-            <p>Evaluated at signal-retaining thresholds to quantify the trade-off between background rejection and signal efficiency.</p>
+            <span class="feat-tag freq">AUC-ROC & AUC-PR</span>
+            <p>Used to summarize class separation across all thresholds. PR-AUC was especially useful as it is more sensitive to minority class performance.</p>
           </div>
           <div class="feature-card">
-            <span class="feat-tag freq">RMSE</span>
-            <p>Root mean squared error used to measure energy regression accuracy against ground-truth labels.</p>
+            <span class="feat-tag freq">RMSE & R²</span>
+            <p>Root Mean Squared Error directly measured energy resolution in keV, while R² quantified the variance explained by the regression models.</p>
           </div>
           <div class="feature-card">
-            <span class="feat-tag freq">Cross-Validation</span>
-            <p>Stratified k-fold splits ensure both classes are represented across all training and validation folds.</p>
+            <span class="feat-tag freq">Validation Strategy</span>
+            <p>5-fold stratified cross-validation and grouped validation by waveform file were used to ensure stable generalization and prevent data leakage.</p>
           </div>
         </div>
       </section>
