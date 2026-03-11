@@ -108,8 +108,8 @@
           <p><strong>Chosen Model: XGBoost.</strong> It effectively isolated background features in a severely imbalanced dataset, maintaining high precision while correctly capturing essential timing and pulse-shape information.</p>
         </div>
         <div class="result-image-slot">
-          <span class="image-slot-label">📊 Confusion matrix / plot goes here</span>
-          </div>
+          <img src="images/final_eval_cm_xgboost_high_avse.png" alt="XGBoost Classification Confusion Matrix" />
+        </div>
       </section>
 
       <section id="low-avse" class="feature-section result-subsection">
@@ -257,12 +257,45 @@
             <div class="score-value">76.79</div>
           </div>
           <div class="score-card">
-            <div class="score-label">$R^2$ Score</div>
-            <div class="score-value">N/A</div>
+            <div class="score-label">IoU</div>
+            <div class="score-value">0.67</div>
           </div>
         </div>
         <div class="result-description">
           <p>Served as our baseline. It captured broad spectral shapes but smoothed out sharp features and deviated at high energies, proving linear boundaries are insufficient for charge collection dynamics.</p>
+        </div>
+        <div class="result-image-slot">
+          <img src="images/energy_spec_linreg.png" alt="Linear Regression Results" />
+        </div>
+      </section>
+
+      <section id="lgbm" class="feature-section result-subsection">
+        <div class="result-subsection-header">
+          <div class="result-owner-badge">
+            <div class="owner-avatar reg-avatar" style="background: linear-gradient(135deg,#16a34a,#4ade80)">LG</div>
+            <div>
+              <span class="owner-name">LightGBM</span>
+              <span class="owner-label">Light gradient boosting machine</span>
+            </div>
+          </div>
+          <div class="result-meta-pill freq">LightGBM</div>
+        </div>
+        <div class="result-body">
+          <div class="score-card">
+            <div class="score-label">MSE</div>
+            <div class="score-value">955.74</div>
+          </div>
+          <div class="score-card">
+            <div class="score-label">RMSE</div>
+            <div class="score-value">30.90</div>
+          </div>
+          <div class="score-card">
+            <div class="score-label">IoU</div>
+            <div class="score-value">0.91</div>
+          </div>
+        </div>
+        <div class="result-description">
+          <p>An alternative gradient-boosted approach that also performed exceptionally well, producing very few large errors and maintaining the physical structure of the true energy spectrum.</p>
         </div>
         <div class="result-image-slot">
           <span class="image-slot-label">📈 Prediction vs actual / residual plot goes here</span>
@@ -290,49 +323,17 @@
             <div class="score-value">30.70</div>
           </div>
           <div class="score-card">
-            <div class="score-label">$R^2$ Score</div>
-            <div class="score-value">N/A</div>
+            <div class="score-label">IoU</div>
+            <div class="score-value">0.92</div>
           </div>
         </div>
         <div class="result-description">
           <p><strong>Chosen Model.</strong> It reduced RMSE by over 56% compared to the baseline, successfully preserving key peak positions by utilizing total signal power and localized nonlinear corrections.</p>
         </div>
-        <div class="result-image-slot">
-          <span class="image-slot-label">📈 Prediction vs actual / residual plot goes here</span>
-          </div>
-      </section>
-
-      <section id="lgbm" class="feature-section result-subsection">
-        <div class="result-subsection-header">
-          <div class="result-owner-badge">
-            <div class="owner-avatar reg-avatar" style="background: linear-gradient(135deg,#16a34a,#4ade80)">LG</div>
-            <div>
-              <span class="owner-name">LightGBM</span>
-              <span class="owner-label">Light gradient boosting machine</span>
-            </div>
-          </div>
-          <div class="result-meta-pill freq">LightGBM</div>
+        <div class="result-image-slot" style="display: flex; gap: 16px; align-items: flex-start;">
+          <img src="images/xgb_pred_true_comp.png" alt="XGBoost Predicted vs True" style="width: 50%; border-radius: 8px;" />
+          <img src="images/xgb_energy_all.png" alt="XGBoost Residuals" style="width: 50%; border-radius: 8px;" />
         </div>
-        <div class="result-body">
-          <div class="score-card">
-            <div class="score-label">MSE</div>
-            <div class="score-value">955.74</div>
-          </div>
-          <div class="score-card">
-            <div class="score-label">RMSE</div>
-            <div class="score-value">30.90</div>
-          </div>
-          <div class="score-card">
-            <div class="score-label">$R^2$ Score</div>
-            <div class="score-value">0.997</div>
-          </div>
-        </div>
-        <div class="result-description">
-          <p>An alternative gradient-boosted approach that also performed exceptionally well, producing very few large errors and maintaining the physical structure of the true energy spectrum.</p>
-        </div>
-        <div class="result-image-slot">
-          <span class="image-slot-label">📈 Prediction vs actual / residual plot goes here</span>
-          </div>
       </section>
 
     </main>
