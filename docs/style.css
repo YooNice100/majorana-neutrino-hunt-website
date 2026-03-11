@@ -226,6 +226,10 @@ body.subpage .topnav {
 
 .hero-actions {
   animation: hero-in 1s 0.5s both;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
 }
 
 .btn-hero {
@@ -251,6 +255,19 @@ body.subpage .topnav {
 .btn-hero.primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 50px rgba(124, 58, 237, 0.55);
+}
+
+.btn-hero.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  border-color: rgba(150, 110, 255, 0.35);
+  backdrop-filter: blur(8px);
+}
+
+.btn-hero.secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--accent-bright);
+  transform: translateY(-2px);
 }
 
 /* Scroll hint */
@@ -287,18 +304,19 @@ body.subpage .topnav {
 }
 
 /* ============================================================
-   INLINE NAV (embedded in page, becomes sticky)
+   INLINE NAV (embedded in page flow — scrolls naturally)
    ============================================================ */
 .inline-nav {
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
   position: relative;
-  z-index: 50;
+  z-index: 10;
+  /* Never pins — topnav takes over when this scrolls out of view */
 }
 
+/* Remove pinned behavior entirely — topnav replaces it */
 .inline-nav.pinned {
-  position: sticky;
-  top: 0;
+  position: relative;
 }
 
 .inline-nav-inner {
