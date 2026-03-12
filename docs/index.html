@@ -11,11 +11,17 @@
 </head>
 
 <script>
-  // Apply saved theme immediately
+  const sunIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+
+  const moonIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+
   const saved = localStorage.getItem('theme') || 'dark';
   if (saved === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
-    document.getElementById('theme-toggle').innerHTML = '<span class="toggle-icon">☀️</span><span class="toggle-label">Light</span>';
+    document.getElementById('theme-toggle').innerHTML = sunIcon;
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    document.getElementById('theme-toggle').innerHTML = moonIcon;
   }
 
   function toggleTheme() {
@@ -23,11 +29,11 @@
     if (isLight) {
       document.documentElement.removeAttribute('data-theme');
       localStorage.setItem('theme', 'dark');
-      document.getElementById('theme-toggle').innerHTML = '<span class="toggle-icon">🌙</span><span class="toggle-label">Dark</span>';
+      document.getElementById('theme-toggle').innerHTML = moonIcon;
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
       localStorage.setItem('theme', 'light');
-      document.getElementById('theme-toggle').innerHTML = '<span class="toggle-icon">☀️</span><span class="toggle-label">Light</span>';
+      document.getElementById('theme-toggle').innerHTML = sunIcon;
     }
   }
 </script>
@@ -35,20 +41,23 @@
 <body>
 
   <!-- STICKY TOP NAV -->
-  <header class="topnav visible" id="topnav">
-    <span class="topnav-brand">Majorana Neutrino Hunt</span>
-    <nav class="topnav-links">
-      <a href="index.html" class="active">Overview</a>
-      <a href="data.html">Data</a>
-      <a href="features.html">Features</a>
-      <a href="methods.html">Methods</a>
-      <a href="results.html">Results</a>
-      <a href="team.html">Team</a>
-    </nav>
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
-      <span class="toggle-icon">🌙</span>
-      <span class="toggle-label">Dark</span>
-    </button>
+  <header class="topnav visible">
+    <div class="topnav-inner">
+      <span class="topnav-brand">Majorana <span>Neutrino Hunt</span></span>
+      <div class="topnav-right">
+        <nav class="topnav-links">
+          <a href="index.html" class="active">Overview</a>
+          <a href="data.html">Data</a>
+          <a href="features.html">Features</a>
+          <a href="methods.html">Methods</a>
+          <a href="results.html">Results</a>
+          <a href="team.html">Team</a>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- HERO -->
