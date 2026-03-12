@@ -966,6 +966,15 @@ ul { margin: 10px 0 0 18px; }
     gap: 8px;
   }
 
+  .topnav-inner {
+    padding: 0 12px;
+  }
+
+  .topnav-right {
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
   .topnav-links {
     overflow-x: auto;
     scrollbar-width: none;
@@ -985,6 +994,6 @@ ul { margin: 10px 0 0 18px; }
     width: 28px;
     height: 28px;
     font-size: 13px;
-    flex-shrink: 0;
+    flex-shrink: 0;  /* 👈 prevents it from being squished off screen */
   }
 }
