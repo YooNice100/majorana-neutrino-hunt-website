@@ -221,8 +221,26 @@
        alt="Random Forest Threshold Tuning"
        style="width:50%; border-radius:8px;">
 </div>
-          </div>
 
+
+        </div>
+
+        <div class="result-description">
+  <p>
+  The left plot shows the <strong>confusion matrix</strong> for the threshold-tuned Random Forest model used to classify 
+  <em>late charge (LQ)</em> events. The model achieves strong performance with a high number of correctly classified 
+  events in both classes, reflected in the high recall and overall F1 score. This indicates that the nonlinear 
+  decision boundaries learned by the Random Forest are effective for separating LQ events from non-LQ events.
+  </p>
+
+  <p>
+  The right plot shows the <strong>threshold tuning curve</strong> for the Random Forest classifier on the validation set. 
+  Instead of using the default probability threshold of 0.5, we evaluated different decision thresholds and measured 
+  the resulting F1 score. The optimal threshold was found near <strong>0.42</strong>, which maximizes the balance between 
+  precision and recall. Using this tuned threshold significantly improved the model’s classification performance 
+  compared to the default setting.
+  </p>
+</div>
           
 
       </section>
