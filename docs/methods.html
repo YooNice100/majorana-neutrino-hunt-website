@@ -43,18 +43,17 @@
         <a href="#pipeline" class="cat-link active">Pipeline</a>
         <a href="#classification" class="cat-link">Classification</a>
         <a href="#regression" class="cat-link">Regression</a>
+        <a href="#validation" class="cat-link">Validation</a>
         <a href="#evaluation" class="cat-link">Evaluation</a>
       </div>
 
+      <!-- PIPELINE -->
       <section id="pipeline" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge time">Pipeline</div>
           <h2>Overall Pipeline</h2>
           <p>End-to-end flow from raw waveforms to model predictions.</p>
         </div>
-        
-        
-        
         <div class="pipeline-steps">
           <div class="pipeline-step">
             <div class="step-num">01</div>
@@ -68,37 +67,43 @@
             <div class="step-num">02</div>
             <div class="step-body">
               <h3>Feature Extraction</h3>
-              <p>Compute over 20 physics-informed features. These span rise-time dynamics, local peak structure, tail charge behavior, current-pulse statistics, and frequency-domain characteristics.</p>
+              <p>Compute over 20 physics-informed features spanning rise-time dynamics, local peak structure, tail charge behavior, current-pulse statistics, and frequency-domain characteristics.</p>
             </div>
           </div>
           <div class="pipeline-arrow">↓</div>
           <div class="pipeline-step">
             <div class="step-num">03</div>
             <div class="step-body">
-              <h3>Model Training</h3>
-              <p>Train classification models to predict four PSD labels to differentiate SSE from MSE. Train regression models to reconstruct continuous event energy in keV.</p>
+              <h3>Data Splitting & Stratification</h3>
+              <p>Split data into 60% training, 20% validation, and 20% test sets using stratified sampling to preserve class proportions — critical given severe imbalances in targets like the delayed charge recovery label.</p>
             </div>
           </div>
           <div class="pipeline-arrow">↓</div>
           <div class="pipeline-step">
             <div class="step-num">04</div>
             <div class="step-body">
+              <h3>Model Training</h3>
+              <p>Train classification models to predict four PSD labels differentiating SSE from MSE. Train regression models to reconstruct continuous event energy in keV.</p>
+            </div>
+          </div>
+          <div class="pipeline-arrow">↓</div>
+          <div class="pipeline-step">
+            <div class="step-num">05</div>
+            <div class="step-body">
               <h3>Validation & Tuning</h3>
-              <p>Optimize hyperparameters via 5-fold cross-validation and tune decision thresholds to handle severe class imbalances. Assess final performance on a held-out test set.</p>
+              <p>Optimize hyperparameters via 5-fold cross-validation grouped by waveform file to prevent data leakage. Tune decision thresholds and assess final performance on the held-out test set.</p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- CLASSIFICATION -->
       <section id="classification" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge tail">Classification</div>
           <h2>Classification Models</h2>
           <p>Distinguishing signal-like single-site events (SSE) from background multi-site events (MSE) across four PSD targets.</p>
         </div>
-        
-        
-        
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag tail">Logistic Regression</span>
@@ -119,6 +124,7 @@
         </div>
       </section>
 
+      <!-- REGRESSION -->
       <section id="regression" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge grad">Regression</div>
@@ -136,16 +142,45 @@
           </div>
           <div class="feature-card">
             <span class="feat-tag grad">LightGBM Regressor</span>
-            <p>Histogram-based gradient boosting framework that improves computational efficiency while accurately capturing complex feature interactions[.</p>
+            <p>Histogram-based gradient boosting framework that improves computational efficiency while accurately capturing complex feature interactions.</p>
           </div>
         </div>
       </section>
 
+      <!-- VALIDATION & RIGOR -->
+      <section id="validation" class="feature-section">
+        <div class="feature-section-header">
+          <div class="feature-section-badge time">Validation</div>
+          <h2>Model Rigor & Validation</h2>
+          <p>Steps taken to ensure fair, leak-free evaluation across all models.</p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="feat-tag time">Data Splits</span>
+            <p>The dataset was divided into a 60% training set, 20% validation set, and 20% test set to ensure models were evaluated on fully unseen data.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag time">Stratified Sampling</span>
+            <p>Stratified sampling was used during splitting to maintain exact class proportions across all sets — critical given severe imbalances in targets like the delayed charge recovery label.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag time">Grouped Validation</span>
+            <p>Waveforms collected in the same acquisition batch can share subtle correlations. To prevent leakage, we implemented grouped validation by waveform file, keeping entire batches together during cross-validation.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feat-tag time">5-Fold Cross-Validation</span>
+            <p>Hyperparameter tuning was performed using 5-fold cross-validation with grouped folds, preventing the model from inflating performance by memorizing batch-specific noise patterns.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVALUATION -->
       <section id="evaluation" class="feature-section">
         <div class="feature-section-header">
           <div class="feature-section-badge freq">Evaluation</div>
           <h2>Evaluation Strategy</h2>
-          <p>Metrics and validation methodology used to assess model performance.</p>
+          <p>Metrics used to assess model performance on both classification and regression tasks.</p>
         </div>
         <div class="feature-grid">
           <div class="feature-card">
@@ -157,12 +192,12 @@
             <p>Used to summarize class separation across all thresholds. PR-AUC was especially useful as it is more sensitive to minority class performance.</p>
           </div>
           <div class="feature-card">
-            <span class="feat-tag freq">RMSE & R²</span>
-            <p>Root Mean Squared Error directly measured energy resolution in keV, while R² quantified the variance explained by the regression models.</p>
+            <span class="feat-tag freq">RMSE</span>
+            <p>Root Mean Squared Error directly measured energy resolution in keV.</p>
           </div>
           <div class="feature-card">
-            <span class="feat-tag freq">Validation Strategy</span>
-            <p>5-fold stratified cross-validation and grouped validation by waveform file were used to ensure stable generalization and prevent data leakage.</p>
+            <span class="feat-tag freq">Held-Out Test Set</span>
+            <p>Final model performance was always reported on the held-out 20% test set — never the validation fold — to give an unbiased estimate of generalization.</p>
           </div>
         </div>
       </section>

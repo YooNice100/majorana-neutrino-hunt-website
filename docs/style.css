@@ -870,6 +870,56 @@ body.subpage .topnav {
   line-height: 1.75;
 }
 
+.citation-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
+}
+
+.citation-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 5px;
+}
+
+.citation-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.citation-text em { color: var(--text); font-style: italic; }
+
+.citation-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--accent-bright);
+  padding: 8px 16px;
+  border: 1px solid rgba(124,58,237,0.35);
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.citation-link:hover {
+  background: rgba(124,58,237,0.15);
+  border-color: var(--accent-bright);
+}
+
 /* Pipeline steps */
 .pipeline-steps { display: flex; flex-direction: column; gap: 0; }
 
