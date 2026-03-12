@@ -344,6 +344,18 @@
           <img src="images/LightGBM_full_predicted_specturm_test (1).png" alt="LightGBM Predicted vs True Energy Spectrum" style="width: 50%; border-radius: 8px;" />
           <img src="images/SHAP_sumamry_plot_LightGBM (1).png" alt="LightGBM SHAP Summary Plot" style="width: 50%; border-radius: 8px;" />
         </div>
+        <div class="result-description">
+  <p>
+    The energy spectrum plot compares the true energy distribution of events (blue) against our model's predictions (orange) across 0-4000 keV. The two lines track closely, including the sharp peaks 
+    that represent known physical signatures of the calibration source. The LightGBM model model achieves an RMSE of 30.90 keV which is a 60% improvement over the linear baseline while preserving the spectral shape 
+    that a potential neutrinoless double beta decay signal would appear in.
+  </p>
+
+  <p>
+  The SHAP summary plots shows how much each feature influenced the model's energy predictions. Total spectral power dominates which is expected, since more deposited energy means a stronger electrical signal overall. 
+  Secondary features like tail slope and drift time provide fine corrections. The model independently discovering these physically meaningful relationships confirms it is learning real detector physics, not statistical noise.
+  </p>
+</div>
       </section>
 
       <section id="xgboost" class="feature-section result-subsection">
