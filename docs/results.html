@@ -146,6 +146,19 @@
           <img src="images/confusion_matrix.png" alt="Random Forest Classification Confusion Matrix" style="width: 50%; border-radius: 8px;" />
           <img src="images/roc_low_avse.png" alt="Random Forest ROC Curve" style="width: 50%; border-radius: 8px;" />
         </div>
+        <div class="result-description">
+  <p>
+  The confusion matrix breaks down every classification decision on the test set. Of 215,707 background events, 202,211 were correctly rejected. 
+  Of 174,293 signal events, 167,187 were correctly kept. The result: 95.9% signal retention and 93.7% background rejection which represents a 
+  strong balance between keeping real physics and filtering out noise.
+  </p>
+
+  <p>
+  The ROC curve measures how well the model separates signal from background across all possible decision thresholds. An AUC of 0.989 out of 1.0 
+  means the model correctly identifies nearly all signal events while keeping background contamination low. The steep rise toward the top left corner 
+  and far from the diagonal confirms that our engineered waveform features contain far more discriminating power than traditional single parameter cuts.
+  </p>
+</div>
       </section>
 
       <section id="dcr" class="feature-section result-subsection">
