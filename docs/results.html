@@ -302,9 +302,10 @@
         <div class="result-description">
           <p>An alternative gradient-boosted approach that also performed exceptionally well, producing very few large errors and maintaining the physical structure of the true energy spectrum.</p>
         </div>
-        <div class="result-image-slot">
-          <span class="image-slot-label">📈 Prediction vs actual / residual plot goes here</span>
-          </div>
+        <div class="result-image-slot" style="display: flex; gap: 16px; align-items: flex-start;">
+          <img src="images/LightGBM_full_predicted_specturm_test (1).png" alt="LightGBM Predicted vs True Energy Spectrum" style="width: 50%; border-radius: 8px;" />
+          <img src="images/SHAP_sumamry_plot_LightGBM (1).png" alt="LightGBM SHAP Summary Plot" style="width: 50%; border-radius: 8px;" />
+        </div>
       </section>
 
       <section id="xgboost" class="feature-section result-subsection">
