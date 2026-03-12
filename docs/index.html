@@ -65,8 +65,17 @@
 
   <main class="content-area">
 
+      <div class="category-nav">
+        <a href="#big-picture" class="cat-link active">The Big Picture</a>
+        <a href="#physics" class="cat-link">Physics</a>
+        <a href="#experiment" class="cat-link">Experiment</a>
+        <a href="#approach" class="cat-link">Our Approach</a>
+        <a href="#scope" class="cat-link">Scope</a>
+        <a href="#results" class="cat-link">Key Results</a>
+      </div>
+
     <!-- WHY THIS MATTERS -->
-    <section class="section">
+    <section id="big-picture" class="section">
       <div class="section-label">The Big Picture</div>
       <h2 class="section-heading">The Data Science of Existence</h2>
       <p class="section-intro">
@@ -106,7 +115,7 @@
     </section>
 
     <!-- NEUTRINOLESS DOUBLE BETA DECAY -->
-    <section class="section">
+    <section id="physics" class="section">
       <div class="section-label">Physics</div>
       <h2 class="section-heading">Neutrinoless Double Beta Decay</h2>
       <p class="section-intro">
@@ -136,7 +145,7 @@
     </section>
 
     <!-- THE MAJORANA DEMONSTRATOR -->
-    <section class="section">
+    <section id="experiment" class="section">
       <div class="section-label">Experiment</div>
       <h2 class="section-heading">The Majorana Demonstrator</h2>
       <p class="section-intro">
@@ -162,7 +171,7 @@
     </section>
 
     <!-- OUR APPROACH -->
-    <section class="section">
+    <section id="approach" class="section">
       <div class="section-label">Methodology</div>
       <h2 class="section-heading">Our Approach</h2>
       <p class="section-intro">
@@ -199,7 +208,7 @@
     </section>
 
     <!-- SCOPE & LIMITATIONS -->
-    <section class="section">
+    <section id="scope" class="section">
       <div class="section-label">Scope & Limitations</div>
       <h2 class="section-heading">What We Did — and Didn't Do</h2>
       <p class="section-intro">
@@ -245,7 +254,7 @@
     </section>
 
     <!-- KEY RESULTS -->
-    <section class="section">
+    <section id="results" class="section">
       <div class="section-label">Findings</div>
       <h2 class="section-heading">Key Results</h2>
       <p class="section-intro">
@@ -267,12 +276,29 @@
         </div>
       </div>
 
-    
+      <div class="note-banner" style="margin-top: 28px;">
+        <span class="note-icon">⚗️</span>
+        This site summarizes our DSC 180 capstone project. Regression results are in progress and will be updated as experiments are finalized.
+      </div>
     </section>
 
   </main>
 
   <script>
+    // Category nav scroll-spy
+    const sections = document.querySelectorAll('section[id]');
+    const catLinks = document.querySelectorAll('.cat-link');
+    const navObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          catLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.cat-link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    sections.forEach(s => navObs.observe(s));
+
     const field = document.getElementById('particles');
     for (let i = 0; i < 60; i++) {
       const dot = document.createElement('div');
