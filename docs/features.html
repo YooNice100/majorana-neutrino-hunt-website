@@ -12,7 +12,6 @@
 
 <body class="subpage">
 
-  <!-- STICKY TOP NAV -->
   <header class="topnav visible" id="topnav">
     <span class="topnav-brand">Majorana Neutrino Hunt</span>
     <nav class="topnav-links">
@@ -25,10 +24,8 @@
     </nav>
   </header>
 
-  <!-- PAGE CONTENT -->
   <div class="subpage-layout">
 
-    <!-- PAGE HEADER -->
     <div class="page-header">
       <div class="page-header-inner">
         <p class="page-eyebrow">Analysis</p>
@@ -42,7 +39,6 @@
 
     <main class="subpage-content">
 
-      <!-- CATEGORY NAV -->
       <div class="category-nav">
         <a href="#time-domain" class="cat-link active">Time Domain</a>
         <a href="#tail" class="cat-link">Tail</a>
@@ -57,6 +53,17 @@
           <h2>Time-Domain Features</h2>
           <p>Metrics derived from the temporal structure of the waveform's rising edge and drift.</p>
         </div>
+
+        <!-- GRAPH SLOT: uncomment <img> and update src when ready -->
+        <div class="feat-graph-slot">
+          <!-- <img src="images/time_domain_plot.png" alt="Time-domain feature distributions"> -->
+          <div class="feat-graph-placeholder">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Time-Domain Graph</span>
+            <span class="feat-graph-hint">Uncomment the &lt;img&gt; tag above and set your image path</span>
+          </div>
+        </div>
+
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag time">tp0</span>
@@ -104,6 +111,16 @@
           <h2>Tail Features</h2>
           <p>Characteristics of the waveform's decay region after the main pulse peak.</p>
         </div>
+
+        <div class="feat-graph-slot">
+          <!-- <img src="images/tail_plot.png" alt="Tail feature distributions"> -->
+          <div class="feat-graph-placeholder feat-graph-placeholder--tail">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Tail Features Graph</span>
+            <span class="feat-graph-hint">Uncomment the &lt;img&gt; tag above and set your image path</span>
+          </div>
+        </div>
+
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag tail">tail_slope</span>
@@ -135,6 +152,16 @@
           <h2>Gradient Features</h2>
           <p>Statistics extracted from the derivative of the waveform, capturing shape complexity.</p>
         </div>
+
+        <div class="feat-graph-slot">
+          <!-- <img src="images/gradient_plot.png" alt="Gradient feature distributions"> -->
+          <div class="feat-graph-placeholder feat-graph-placeholder--grad">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Gradient Features Graph</span>
+            <span class="feat-graph-hint">Uncomment the &lt;img&gt; tag above and set your image path</span>
+          </div>
+        </div>
+
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag grad">peak_count</span>
@@ -174,6 +201,16 @@
           <h2>Frequency-Domain Features</h2>
           <p>Spectral properties extracted via Fourier analysis of the waveform signal.</p>
         </div>
+
+        <div class="feat-graph-slot">
+          <!-- <img src="images/frequency_plot.png" alt="Frequency-domain feature distributions"> -->
+          <div class="feat-graph-placeholder feat-graph-placeholder--freq">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Frequency-Domain Graph</span>
+            <span class="feat-graph-hint">Uncomment the &lt;img&gt; tag above and set your image path</span>
+          </div>
+        </div>
+
         <div class="feature-grid">
           <div class="feature-card">
             <span class="feat-tag freq">SCA</span>
@@ -202,7 +239,6 @@
   </div>
 
   <script>
-    // Highlight category nav on scroll
     const sections = document.querySelectorAll('.feature-section');
     const catLinks = document.querySelectorAll('.cat-link');
 
