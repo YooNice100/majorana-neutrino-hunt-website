@@ -13,7 +13,7 @@
 <body>
 
   <!-- STICKY TOP NAV -->
-  <header class="topnav" id="topnav">
+  <header class="topnav visible" id="topnav">
     <span class="topnav-brand">Majorana Neutrino Hunt</span>
     <nav class="topnav-links">
       <a href="index.html" class="active">Overview</a>
@@ -61,18 +61,7 @@
     </div>
   </section>
 
-  <div class="inline-nav" id="inline-nav">
-    <div class="inline-nav-inner">
-      <nav class="inline-nav-links">
-        <a href="index.html" class="active">Overview</a>
-        <a href="data.html">Data</a>
-        <a href="features.html">Features</a>
-        <a href="methods.html">Methods</a>
-        <a href="results.html">Results</a>
-        <a href="team.html">Team</a>
-      </nav>
-    </div>
-  </div>
+
 
   <main class="content-area">
 
@@ -278,28 +267,12 @@
         </div>
       </div>
 
+    
     </section>
 
   </main>
 
   <script>
-    const topnav = document.getElementById('topnav');
-    const inlineNav = document.getElementById('inline-nav');
-
-    // Watch the inline nav itself — when it leaves the top of the screen,
-    // fade in the fixed topnav. When it comes back, fade it out.
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) {
-          topnav.classList.add('visible');
-        } else {
-          topnav.classList.remove('visible');
-        }
-      },
-      { threshold: 0, rootMargin: '0px 0px 0px 0px' }
-    );
-    observer.observe(inlineNav);
-
     const field = document.getElementById('particles');
     for (let i = 0; i < 60; i++) {
       const dot = document.createElement('div');
