@@ -10,6 +10,28 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
+<script>
+  // Apply saved theme immediately
+  const saved = localStorage.getItem('theme') || 'dark';
+  if (saved === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    document.getElementById('theme-toggle').innerHTML = '<span class="toggle-icon">☀️</span><span class="toggle-label">Light</span>';
+  }
+
+  function toggleTheme() {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'dark');
+      document.getElementById('theme-toggle').innerHTML = '<span class="toggle-icon">🌙</span><span class="toggle-label">Dark</span>';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+      document.getElementById('theme-toggle').innerHTML = '<span class="toggle-icon">☀️</span><span class="toggle-label">Light</span>';
+    }
+  }
+</script>
+
 <body class="subpage">
 
   <header class="topnav visible">
@@ -22,6 +44,11 @@
       <a href="results.html">Results</a>
       <a href="team.html">Team</a>
     </nav>
+
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+      <span class="toggle-icon">🌙</span>
+      <span class="toggle-label">Dark</span>
+    </button>
   </header>
 
   <div class="subpage-layout">
