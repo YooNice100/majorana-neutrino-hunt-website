@@ -314,6 +314,25 @@
         <div class="result-image-slot">
           <img src="images/energy_spec_linreg.png" alt="Linear Regression Results" />
         </div>
+
+        <div class="result-description">
+  <p>
+  The plot above compares the <strong>true energy spectrum</strong> of detector events (blue) with the
+  <strong>predicted energies</strong> from the linear regression baseline model (orange). While the model is able
+  to approximate the overall distribution of events across the 0–4000 keV range, it struggles to reproduce the
+  sharp spectral peaks present in the true data. These peaks correspond to known physical signatures in the
+  detector, and their smoothing in the predicted distribution indicates that the linear model cannot fully
+  capture the underlying relationships between waveform features and deposited energy.
+  </p>
+
+  <p>
+  This limitation is reflected in the model’s higher reconstruction error, with an
+  <strong>RMSE of 76.79 keV</strong>. Because linear regression assumes a simple linear relationship between
+  input features and energy, it cannot model the complex nonlinear charge collection dynamics present in the
+  detector signals. As a result, this baseline provides a useful point of comparison but motivates the use of
+  more flexible models such as gradient boosted trees for accurate energy reconstruction.
+  </p>
+</div>
       </section>
 
       <section id="lgbm" class="feature-section result-subsection">
@@ -391,9 +410,30 @@
           <p><strong>Chosen Model.</strong> It reduced RMSE by over 56% compared to the baseline, successfully preserving key peak positions by utilizing total signal power and localized nonlinear corrections.</p>
         </div>
         <div class="result-image-slot" style="display: flex; gap: 16px; align-items: flex-start;">
-          <img src="images/xgb_pred_true_comp.png" alt="XGBoost Predicted vs True" style="width: 50%; border-radius: 8px;" />
           <img src="images/xgb_energy_all.png" alt="XGBoost Residuals" style="width: 50%; border-radius: 8px;" />
+          <img src="images/xgb_pred_true_comp.png" alt="XGBoost Predicted vs True" style="width: 50%; border-radius: 8px;" />
+          
         </div>
+
+        <div class="result-description">
+  <p>
+  The left plot shows the <strong>energy spectrum comparison</strong> between the true event energies (blue) and the
+  predictions produced by the XGBoost regression model (orange). The predicted distribution closely follows the
+  structure of the true spectrum across the full 0–4000 keV range, including the prominent calibration peaks.
+  Preserving these peak locations is important because potential physics signals, such as neutrinoless double beta
+  decay, would appear as narrow features in this spectrum. The strong overlap between the two distributions indicates
+  that the model successfully reconstructs the underlying energy structure of detector events.
+  </p>
+
+  <p>
+  The right plot shows the <strong>energy reconstruction performance</strong> by comparing predicted energy values
+  against the true energies for individual events. The dashed red line represents perfect prediction, and most points
+  cluster closely around this diagonal, demonstrating strong agreement between the model and the ground truth.
+  The XGBoost model achieves an RMSE of <strong>30.70 keV</strong>, representing a substantial improvement over the
+  linear baseline. This result indicates that gradient boosted trees effectively capture nonlinear relationships
+  between waveform features and deposited energy in the detector.
+  </p>
+</div>
       </section>
 
       <section id="significance" class="feature-section">
