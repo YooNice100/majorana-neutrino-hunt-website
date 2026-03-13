@@ -1081,3 +1081,11 @@ ul { margin: 10px 0 0 18px; }
     flex-shrink: 0;
   }
 }
+
+.topnav-brand {
+  text-decoration: none;
+}
+
+.mobile-menu-brand {
+  text-decoration: none;
+}
