@@ -10,48 +10,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<script>
-  const sunIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
-
-  const moonIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
-
-  const saved = localStorage.getItem('theme') || 'dark';
-  if (saved === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    document.getElementById('theme-toggle').innerHTML = sunIcon;
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    document.getElementById('theme-toggle').innerHTML = moonIcon;
-  }
-
-  function toggleTheme() {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    if (isLight) {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('theme', 'dark');
-      document.getElementById('theme-toggle').innerHTML = moonIcon;
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-      document.getElementById('theme-toggle').innerHTML = sunIcon;
-    }
-  }
-
-  function toggleMenu() {
-    const menu = document.getElementById('mobile-menu');
-    menu.classList.toggle('open');
-  }
-
-  // Close menu when a link is clicked
-  document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.getElementById('mobile-menu').classList.remove('open');
-    });
-  });
-</script>
-
 <body>
-
   <!-- STICKY TOP NAV -->
   <header class="topnav visible">
     <div class="topnav-inner">
@@ -73,16 +32,26 @@
         </button>
       </div>
     </div>
-    <!-- Mobile dropdown -->
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="index.html">Overview</a>
-      <a href="data.html">Data</a>
-      <a href="features.html">Features</a>
-      <a href="methods.html">Methods</a>
-      <a href="results.html">Results</a>
-      <a href="team.html">Team</a>
-    </div>
   </header>
+
+  <!-- Overlay -->
+  <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="toggleMenu()"></div>
+
+  <!-- Drawer -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-brand">Majorana <span>Neutrino Hunt</span></span>
+      <button class="mobile-menu-close" onclick="toggleMenu()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <a href="index.html" class="active">Overview</a>
+    <a href="data.html">Data</a>
+    <a href="features.html">Features</a>
+    <a href="methods.html">Methods</a>
+    <a href="results.html">Results</a>
+    <a href="team.html">Team</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero-screen">
@@ -341,6 +310,48 @@
   </main>
 
   <script>
+    const sunIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+    const moonIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+
+    // Apply saved theme on load
+    const saved = localStorage.getItem('theme') || 'dark';
+    if (saved === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.getElementById('theme-toggle').innerHTML = sunIcon;
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      document.getElementById('theme-toggle').innerHTML = moonIcon;
+    }
+
+    function toggleTheme() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('theme-toggle').innerHTML = moonIcon;
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('theme-toggle').innerHTML = sunIcon;
+      }
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-menu-overlay');
+      menu.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.remove('open');
+        document.getElementById('mobile-menu-overlay').classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
     // Category nav scroll-spy
     const sections = document.querySelectorAll('section[id]');
     const catLinks = document.querySelectorAll('.cat-link');
@@ -355,6 +366,7 @@
     }, { rootMargin: '-30% 0px -60% 0px' });
     sections.forEach(s => navObs.observe(s));
 
+    // Particles
     const field = document.getElementById('particles');
     for (let i = 0; i < 60; i++) {
       const dot = document.createElement('div');
